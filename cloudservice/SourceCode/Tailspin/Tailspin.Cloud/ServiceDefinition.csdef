@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceDefinition name="Tailspin.Cloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
+  <WebRole name="Tailspin.Web" enableNativeCodeExecution="true">
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="HttpsIn" endpointName="HttpsIn" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" />
+      <Setting name="PublicSurveyWebsiteUrl" />
+      <Setting name="TraceEventTypeFilter" />
+      <Setting name="ExtensionsPath" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+      <Setting name="RedisCacheConnectionString" />
+      <Setting name="AzureADClientId" />
+      <Setting name="AzureADTenant" />
+      <Setting name="AzureADTenantId" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="PoltergeistSecretStore" storeLocation="LocalMachine" storeName="My" />
+    </Certificates>
+    <Endpoints>
+      <InputEndpoint name="HttpsIn" protocol="https" port="443" certificate="PoltergeistSecretStore" />
+    </Endpoints>
+    <LocalResources>
+    </LocalResources>
+  </WebRole>
+  <WebRole name="Tailspin.Web.Survey.Public">
+    <Sites>
+      <Site name="Web">
+        <Bindings>
+          <Binding name="HttpIn" endpointName="HttpIn" />
+        </Bindings>
+      </Site>
+    </Sites>
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" />
+      <Setting name="TraceEventTypeFilter" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+      <Setting name="RedisCacheConnectionString" />
+    </ConfigurationSettings>
+    <Endpoints>
+      <InputEndpoint name="HttpIn" protocol="http" port="80" />
+    </Endpoints>
+  </WebRole>
+  <WorkerRole name="Tailspin.Workers.Surveys">
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" />
+      <Setting name="TraceEventTypeFilter" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
+    </ConfigurationSettings>
+  </WorkerRole>
+</ServiceDefinition>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="Tailspin.Cloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" schemaVersion="2015-04.2.6" osFamily="4" osVersion="*">
+  <Role name="Tailspin.Web">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=YourPrimaryAccessKey" />
+      <Setting name="PublicSurveyWebsiteUrl" value="http://127.0.0.1:81" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=YourPrimaryAccessKey" />
+      <Setting name="TraceEventTypeFilter" value="Information" />
+      <Setting name="ExtensionsPath" value=".\Bin" />
+      <Setting name="RedisCacheConnectionString" value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
+      <Setting name="AzureADClientId" value="" />
+      <Setting name="AzureADTenant" value="" />
+      <Setting name="AzureADTenantId" value="" />
+    </ConfigurationSettings>
+    <Certificates>
+      <Certificate name="PoltergeistSecretStore" thumbprint="f54701bd5d320c2316031b8a914139652176fe5c" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+  <Role name="Tailspin.Web.Survey.Public">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=YourPrimaryAccessKey" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=Ol6w547AwVJfuspjxoPIVcsvufZCJF1ucwYIsWWL4SMlbkPTpc/H+zmqE7HJHFzOtrP8g/VILiU1UxEVQAdLRA==" />
+      <Setting name="TraceEventTypeFilter" value="Information" />
+      <Setting name="RedisCacheConnectionString" value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
+    </ConfigurationSettings>
+  </Role>
+  <Role name="Tailspin.Workers.Surveys">
+    <Instances count="2" />
+    <ConfigurationSettings>
+      <Setting name="DataConnectionString" value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=YourPrimaryAccessKey" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=YourPrimaryAccessKey" />
+      <Setting name="TraceEventTypeFilter" value="Information" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>

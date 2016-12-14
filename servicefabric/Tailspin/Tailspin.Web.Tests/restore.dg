@@ -1,0 +1,3 @@
+#:Tailspin.Web.Tests.xproj
+Tailspin.Web.Tests.xproj|..\Tailspin.Web\Tailspin.Web.xproj
+..\Tailspin.Web\Tailspin.Web.xproj|..\Tailspin.Web.Survey.Shared\Tailspin.Web.Survey.Shared.csproj

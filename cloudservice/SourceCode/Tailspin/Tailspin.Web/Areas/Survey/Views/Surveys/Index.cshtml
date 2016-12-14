@@ -1,0 +1,83 @@
+﻿@model TenantPageViewData<IEnumerable<SurveyModel>>
+
+
+@section MenuContent
+{
+    <ul>
+        <li>@Html.ActionLink("New Survey", "New", "Surveys")</li>
+        <li class="current"><a>My Surveys</a></li>
+        <li>@Html.ActionLink("My Account", "Index", "Account", new {area = string.Empty}, null)</li>
+    </ul>
+    <div class="clear">
+    </div>
+}
+
+<div class="breadcrumbs">
+    My Surveys
+</div>
+@if (!this.Model.ContentModel.Any()) {
+    <div class="noResults">
+        <h3>There are no surveys.</h3>
+    </div>
+}
+else
+{
+    using (Html.BeginForm("Delete", "Surveys"))
+    {
+        @Html.AntiForgeryToken()
+        <table border="0" cellspacing="0" cellpadding="0" class="tableGrid">
+            <tr>
+                <th>
+                    Title
+                </th>
+                <th>
+                    Created On
+                </th>
+                @if (this.Model.ContentModel.First().Extensions != null)
+                {
+                    foreach (var extensionItem in this.Model.ContentModel.First().Extensions)
+                    {
+                        <th>@extensionItem.PropertyName.SplitWords()</th>
+                    }
+                }
+                <th>
+                    Analyze
+                </th>
+                <th>
+                    Delete
+                </th>
+            </tr>
+        @foreach (var survey in this.Model.ContentModel)
+        {
+            <tr>
+                <td>
+                    @Html.SurveyLink(survey.Title, this.ViewData["tenantId"].ToString(), survey.SlugName)
+                </td>
+                <td>
+                    @survey.CreatedOn.ToLongDateString()
+                </td>
+                @if (survey.Extensions != null)
+                {
+                    foreach (var extensionItem in survey.Extensions)
+                    {
+                        <td>@extensionItem.PropertyValue</td>
+                    }
+                }
+                <td>
+                    @Html.ActionLink("Analyze", "Analyze", "Surveys", new { surveySlug = survey.SlugName }, new { })
+                </td>
+                <td>
+                    <a href="#" onclick="javascript: submitToDelete('@Url.Action("Delete", "Surveys", new { surveySlug = survey.SlugName })')">Delete</a>
+                </td>
+            </tr>
+        }
+        </table>
+        }
+    }
+
+<script type="text/javascript">
+    function submitToDelete(url) {
+        document.forms[0].action = url 
+        document.forms[0].submit();
+    }
+</script>

@@ -1,0 +1,41 @@
+﻿@model TenantPageViewData<IEnumerable<Tenant>>
+
+<h2>
+    Welcome to Tailspin!
+</h2>
+<br />
+@Html.ActionLink("Enroll your company", "Join") in Tailspin!
+<p>
+    To test the application, some tenants have already been provisioned:</p>
+<div id="configured-tenants">
+    <ul class="tenants-list">
+        @foreach (var tenant in this.Model.ContentModel)
+            { 
+        <li>
+            <div class="configured-tenant-logo">
+                <a href="@Url.Action("Index", "Surveys", new { area = "Survey", tenantId = tenant.TenantId.ToLowerInvariant() }, null)"
+                    class="configured-tenants-links">
+                    @if (String.IsNullOrWhiteSpace(tenant.Logo))
+                    {
+                        <img src="../../Content/img/tenant-nologo.png" alt="@tenant.TenantId" />
+                    }
+                    else
+                    {
+                        <img src="@tenant.Logo" alt="@tenant.TenantId logo" />
+                    }
+                </a>
+            </div>
+            <div class="configured-tenant-description">
+                @if (String.IsNullOrWhiteSpace(tenant.WelcomeText))
+                {
+                    <text>Click on the image to login with <b>@tenant.TenantId's user</b></text>
+                }
+                else
+                {
+                    @tenant.WelcomeText
+                }
+            </div>
+        </li>
+        }
+    </ul>
+</div>

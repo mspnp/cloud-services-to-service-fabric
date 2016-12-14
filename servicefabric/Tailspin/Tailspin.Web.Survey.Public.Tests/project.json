@@ -1,0 +1,18 @@
+﻿{
+  "version": "1.0.0-*",
+  
+  "testRunner": "mstest",
+
+  "dependencies": {
+    "dotnet-test-mstest": "1.1.2-preview",
+    "Moq": "4.6.38-alpha",
+    "MSTest.TestFramework": "1.0.6-preview",
+    "Tailspin.Web.Survey.Public": "1.0.0-*"
+  },
+
+  "frameworks": {
+    "net452": {
+      "imports": "dnxcore50"
+    }
+  }
+}
