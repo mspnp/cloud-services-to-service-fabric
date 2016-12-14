@@ -1,0 +1,78 @@
+﻿@model TenantMasterPageViewData
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tailspin - @Model.Title</title>
+    <link href="@Url.Content("~/Content/styles/baseStyle.css")" rel="stylesheet" type="text/css" media="screen" />
+    @RenderSection("Head", required: false)
+    <asp:ContentPlaceHolder runat="server" ID="Head" />
+</head>
+<body>
+    <div id="header">
+        <div id="top">
+            <div id="topNav">
+                @if (Request.IsAuthenticated) {
+                <strong>@Context.User.Identity.Name</strong>
+                <ul>
+                    <li>
+                        | @if (this.ViewData["tenantId"] != null)
+                        {
+                            @ViewData["tenantId"]
+                        }
+                        else
+                        {
+                            <text>Tailspin</text>
+                        }
+                    </li>
+                    <li>| <a href="#">Settings</a></li>
+                    <li>| <a href="#">Help</a></li>
+                    <li>| @Html.ActionLink("Manage", "Index", "Management", new { area = string.Empty }, null)</li>
+                    <li>| @Html.ActionLink("Sign out", "SignOut", "Authentication")</li>
+                </ul>
+                } else {
+                <ul>
+                    <li>@Html.ActionLink("Home", string.Empty, "OnBoarding", new { area = string.Empty }, null)</li>
+                    <li>| @Html.ActionLink("Manage", "Index", "Management", new { area = string.Empty }, null)</li>
+                    <li>| @Html.ActionLink("Join", "Join", "OnBoarding", new { area = string.Empty }, null)</li>
+                    <li>| @Html.ActionLink("Sign in", "SignIn", "Authentication")</li>
+                    <li>| <a href="#">Learn more</a></li>
+                </ul>
+
+                }
+            </div><div class="clear"></div>
+        </div>
+    </div>
+    <div id="logo">
+        @{ string logoUrl = String.IsNullOrEmpty(Model.LogoUrl) ? Url.Content("~/Content/Img/tailspin-logo.png") : Model.LogoUrl; }
+        <img src="@logoUrl" alt="Powered by Tailspin" width="135" height="54" align="top" />
+    </div>
+    <div id="search">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="container">
+        <div id="navMenu">
+            @RenderSection("MenuContent", required: false)
+            <div class="clear"></div>
+        </div>
+        <div id="main">
+            @RenderBody()
+
+            <div id="footer">
+                <div id="footerBottom">
+                    <div id="copyright">Copyright &copy; 2016 Tailspin</div>
+                    <ul>
+                        <li>&nbsp;</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="containerBottom"></div>
+</body>
+</html>

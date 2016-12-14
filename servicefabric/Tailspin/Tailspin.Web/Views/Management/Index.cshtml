@@ -1,0 +1,37 @@
+﻿@model TenantPageViewData<IEnumerable<string>>
+
+@section MenuContent
+{
+    <ul>
+        <li class="current"><a>Subscriber's list</a></li>
+        <li>@Html.ActionLink("Add a new subscriber", "New", "Management")</li>
+    </ul>
+}
+
+<table border="0" cellspacing="0" cellpadding="0" class="tableGrid">
+    <tr>
+        <th>
+            Tenant name
+        </th>
+        <th>
+            Details
+        </th>
+        <th>
+            Delete
+        </th>
+    </tr>
+    @foreach (var tenantId in this.Model.ContentModel)
+    {
+    <tr>
+        <td>
+            @tenantId
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Detail", "Management", new { tenantId = tenantId }, new { })
+        </td>
+        <td>
+            <a href="#" onclick="alert('This page is just a mockup, tenants cannot be deleted at Tailspin sample application.');">Delete</a>
+        </td>
+    </tr>
+    }
+</table>

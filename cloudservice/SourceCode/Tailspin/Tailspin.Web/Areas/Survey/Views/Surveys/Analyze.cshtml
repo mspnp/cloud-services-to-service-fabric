@@ -1,0 +1,55 @@
+﻿@model TenantPageViewData<SurveyAnswersSummary>
+
+@section MenuContent
+{
+    <ul>
+        <li>@Html.ActionLink("New Survey", "New", "Surveys")</li>
+        <li class="current"><a>My Surveys</a></li>
+        <li>@Html.ActionLink("My Account", "Index", "Account", new {area = string.Empty}, null)</li>
+    </ul>
+    <div class="clear">
+    </div>
+}
+
+
+<div id="pageTitle">
+    <h2>
+        <span>Summary</span>
+        @Html.ActionLink("Browse Responses", "BrowseResponses", "Surveys")
+        @Html.ActionLink("Export Responses", "ExportResponses", "Surveys")
+    </h2>
+</div>
+<div class="breadcrumbs">
+    @Html.ActionLink("My Surveys", "Index", "Surveys") &gt;
+    @Model.Title  &gt;
+    Analyze 
+</div>
+
+<h2>
+    Analyze:
+    @Model.Title 
+</h2>
+<div id="surveyForm">
+    @if (Model.ContentModel != null)
+    {
+    <div class="questionText" style="font-size:16px;padding-top:15px; padding-bottom:10px">
+        Total responses: @Model.ContentModel.TotalAnswers 
+    </div>
+    <ol>
+        @for (int i = 0; i < Model.ContentModel.QuestionAnswersSummaries.Count; i++)
+        {
+            <li>
+                @Html.DisplayFor(m => m.ContentModel.QuestionAnswersSummaries[i], QuestionTemplateFactory.Create(Model.ContentModel.QuestionAnswersSummaries[i]))
+            </li>
+        }
+    </ol>
+    }
+    else
+    {
+        <text>No responses to this survey yet.</text>
+    } 
+</div>
+
+<script src="@Url.Content("~/Scripts/jquery-1.4.1.min.js")" language="javascript" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.rating.js")" language="javascript" type="text/javascript"></script>
+

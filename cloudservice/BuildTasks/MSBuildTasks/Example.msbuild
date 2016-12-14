@@ -1,0 +1,26 @@
+﻿<?xml version='1.0' encoding='utf-8' ?>
+<Project xmlns='http://schemas.microsoft.com/developer/msbuild/2003'>
+  <UsingTask
+    AssemblyFile='bin\Release\Microsoft.Practices.WindowsAzure.MSBuildTasks.dll'
+    TaskName='Microsoft.Practices.WindowsAzure.MSBuildTasks.RegexReplace'/>
+  <UsingTask
+    AssemblyFile='bin\Release\Microsoft.Practices.WindowsAzure.MSBuildTasks.dll'
+    TaskName='CodePlex.MSBuildTasks.GetDateTime'/>
+  
+  <!--
+    Updates all AssemblyInfo.cs files with a build number that is "year.month.day.BuildVersion"
+    If BuildVersion is not set externally, then it does nothing.
+  -->
+  <ItemGroup>
+    <RegexFiles Include='**\AssemblyInfo.cs'/>
+  </ItemGroup>
+  <Target Name='Regex' Condition="$(BuildVersion) != ''">
+    <GetDateTime Format='y.M.d'>
+      <Output PropertyName="DateTime" TaskParameter="Text" />
+    </GetDateTime>
+    <RegexReplace
+      Pattern='AssemblyVersion\(".*?"\)'
+      Replacement='AssemblyVersion("$(DateTime).$(BuildVersion)")'
+      Files='@(RegexFiles)'/>
+  </Target>
+</Project>

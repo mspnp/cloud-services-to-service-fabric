@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <title>Developing Applications for the Cloud on Windows Azure - Release Notes</title>
+    <link rel="stylesheet" href="readme_files/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="readme_files/styles/mnp.css" type="text/css" />
+    <style type="text/css">
+
+ p.MsoNormal
+  {margin-bottom:.0001pt;
+  font-size:11.0pt;
+  font-family:"Calibri","sans-serif";
+          margin-left: 0in;
+            margin-right: 0in;
+            margin-top: 0in;
+        }
+    .auto-style1 {
+  color: #1155A8;
+}
+    </style>
+</head>
+<body>
+    <a name="top"></a>
+    <div id="commonWrapper">
+        <div id="pageWrapper">
+            <!--   START HEADER   -->
+            <div class="page_header">
+                <div class="page_header_logo">
+                    <table>
+                        <tr>
+                            <td>
+                                <a href="Readme.htm">
+                                    <div class="page_header_title">
+                                        Developing Applications for the Cloud on Windows Azure (3.0)</div>
+                                </a>
+                                <div class="page_header_subtitle">
+                                    Release Notes</div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--   END HEADER   -->
+            <div id="Main">
+                <div id="MainMid">
+                    <!-- START NAVIGATION BAR -->
+                    <div id="TopNavigation">
+                        <div class="topnav_item" id="topnav1">
+                            <a tabindex="1" href="Readme.htm"><span class="topnav_item_left"></span><span
+                                class="topnav_item_middle"><span class="topnav_item_text">Readme</span>
+                            </span><span class="topnav_item_right_selected"></span></a>
+                            <a tabindex="1" href="ReleaseNotes.htm"><span class="topnav_item_selected"></span><span
+                                class="topnav_item_middle_selected"><span class="topnav_item_text">Release notes</span>
+                            </span><span class="topnav_item_right"></span></a>
+                        </div>
+                        <div class="topnav_item_divider">
+                        </div>
+                    </div>
+                    <!-- END NAVIGATION BAR -->
+                    <div id="Content">
+                        <div class="content_table_home">
+                            <div class="homePgImgWide">
+                                <div class="homearea">
+                                    <div class="pageTitle">
+                                        <div class="maintitle">
+                                            Release Notes for the Examples</div>
+                                    </div>
+                                    <div class="newpromo">
+                                        <a href="http://msdn.microsoft.com/practices">
+                                            <img src="readme_files/images/pnp_logo.gif" alt="Microsoft Patterns & Practices" />
+                                        </a>
+                                    </div>
+                                    <div class="content_header_text">
+<p><b>System Requirements</b></p>
+<p>&nbsp;</p>
+<ul>
+  <li>Microsoft Windows 7 with Service Pack 1, or Windows Server 2008 R2 with Service Pack 1 (32 bit or 64 bit editions)</li>
+  <li><a href="http://www.microsoft.com/download/en/details.aspx?id=17718" target="_blank">Microsoft .NET Framework version 4.0</a></li>
+  <li><a href="http://www.microsoft.com/visualstudio/en-us/products/" target="_blank">Microsoft Visual Studio</a> 2010 Ultimate, Premium, or Professional edition with Service Pack 1 installed, or Visual Studio 2012 Ultimate, Premium, or Professional edition</li>
+  <li><a href="http://www.microsoft.com/web/gallery/install.aspx?appid=WindowsAzureToolsVS2010" target="_blank">Windows Azure SDK for .NET</a> (includes the Visual Studio Tools for Windows Azure)</li>
+  <li><a href="http://www.microsoft.com/sqlserver/en/us/editions/express.aspx" target="_blank">Microsoft SQL Server or SQL Server Express 2008</a></li>
+  <li><a href="http://www.microsoft.com/download/en/details.aspx?id=4211" target="_blank">MVC 3 Framework</a></li>
+  <li><a href="http://www.microsoft.com/download/en/details.aspx?displaylang=en&id=17331" target="_blank">Windows Identity Foundation</a>. This is required for claims-based authorization.</li>
+  <li><a href="http://www.artoftest.com/support/webaii/topicsindex.aspx" target="_blank">WebAii</a>. Place this in the Lib folder of the examples.</font> </li>
+  <li><a href="http://code.google.com/p/moq/" target="_blank">Moq version 4.0.10501.6</a>. Open the Properties dialog and unblock the zip file after you download it and before you extract the contents. Place the contents in the Lib folder of the examples.</li>
+  <li><a href="http://go.microsoft.com/fwlink/?LinkId=197115" target="_blank">Microsoft Anti-Cross Site Scripting Library V4</a>. Place this in the Lib folder of the examples.</li>
+  <li>Enterprise Library 5 (required assemblies are included in the source code folders)</li>
+  <li>Unity 2.0 (required assemblies are included in the source code folders)</li>
+</ul>
+<p><i>This list includes third-party software not provided by Microsoft. The links are designed to help you to obtain the required software from
+the appropriate vendor's website. The licensing terms and conditions for such software will differ from that of the Microsoft software in the list.
+We acknowledge the help provided by third-party vendors where their software is used in this project.</i></p>
+
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<p><b><a name="dependencies"></a>Check for and Install Required Files and Dependencies</b></p>
+<p>&nbsp;</p>
+<p>To check for software prerequisites needed to use the examples, run the <b>CheckDependencies.cmd</b> command file that is located
+in the root folder of the labs using an account that has Administrator privileges.
+This launches a dependency checking tool that reports any components missing on your system, and provides links to obtain, install, and configure
+these missing components. You must have the
+<a href="http://www.microsoft.com/download/en/details.aspx?id=17718">.NET Framework version 4.0</a>
+installed to run the Dependency Checker.</p>
+<p>&nbsp;</p>
+<p><b>NOTE</b>: If you want to install the Windows Azure SDK for .NET on Windows Server 2008 R2, you must first ensure that the .NET Framework version 3.5.1
+is installed on your computer.</p>
+
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<p><b><a name="dependencies"></a>Allow NuGet to Download Missing Packages</b></p>
+<p>&nbsp;</p>
+<p>You must ensure that Visual Studio is configured to use the latest version of the NuGet package manager and allow it to download missing packages during the build process. To enable this:</p>
+<ol>
+<li>Open the Visual Studio <b>Extension Manager</b> dialog from the <b>Tools</b> menu.</li>
+<li>Check that the NuGet Package Manager is installed. If it is not already installed select <b>Online Gallery</b> and install it. You can use the Search feature to find it in the Gallery.</li>
+<li>If it is already installed select <b>Updates</b> and check if there is an update available. If there is, select <b>Update</b> to install it. If the update fails, uninstall the existing version and try again.</li>
+<li>Open the Visual Studio <b>Options</b> dialog from the <b>Tools</b> menu.</li>
+<li>Expand the section for <b>Package Manager</b> and select <b>General</b>.</li>
+<li>Ensure that <b>Allow NuGet to download missing packages during build</b> and <b>Automatically check for updates</b> are checked.</li>
+</ol>
+
+<hr /><p>&nbsp;</p>
+
+<p><b><a name="knownissues"></a>Known Issues When Running the Examples</b></p>
+<p>&nbsp;</p>
+<p>You must run the projects and solutions under an account that has Administrator privileges.</p>
+
+<p>&nbsp;</p><hr /><p>&nbsp;</p>
+
+<p>If you want to enable the AppFabric Cache session store provider you must uncomment the following section of the <b>web.config</b> file
+in the <b>TailSpin.Web</b> project:</p>
+<pre>
+&lt;!-- Uncomment this section to enable the AppFabric Cache --&gt;
+&lt;!--
+  &lt;sessionState mode="Custom" customProvider="AppFabricCacheSessionStoreProvider"&gt;
+    &lt;providers&gt;
+      &lt;add name="AppFabricCacheSessionStoreProvider"
+           type="Microsoft.Web.DistributedCache.DistributedCacheSessionStateStoreProvider,
+                 Microsoft.Web.DistributedCache"
+           cacheName="default"
+           applicationName="TailSpin.Web"
+           useBlobMode="true"
+           dataCacheClientName="SslEndpoint" /&gt;
+    &lt;/providers&gt;
+  &lt;/sessionState&gt;
+--&gt;
+</pre>
+<p>You must also edit the settings in the <b>&lt;dataCacheClients&gt;</b> section of the <b>web.config</b> file to specify
+your own AppFabric Cache name, port number, and authentication token.</p>
+
+<p>&nbsp;</p>
+
+<p>If you are running the example on a computer protected by a corporate firewall or external proxy server you may find that the application behaves erratically
+if it cannot connect to the Windows Azure Cache service over the Internet.</p>
+<p>&nbsp;</p>
+<p>To resolve this you must force the IIS Application Pool to execute in the context of
+your own domain user account. To do this, you must modify the <b>OnStart</b> method in the file <b>WebRole.cs</b> as shown here. Replace the text
+<b><i>yourDomain\\yourUserName</i></b> and <b><i>yourPassword</i></b> with your own domain name, user name, and password.</p>
+<pre>
+using System.DirectoryServices;
+using Microsoft.Web.Administration;
+
+public override bool OnStart()
+{
+  var webApplicationProjectName = "Web";
+  var appPoolUser = "<b><i>yourDomain\\yourUserName</i></b>";
+  var appPoolPass = "<b><i>yourPassword</i></b>";
+  var metabasePath = "IIS://localhost/W3SVC/AppPools";
+
+  using (ServerManager serverManager = new ServerManager())
+  {
+    var appPoolName = serverManager.Sites[RoleEnvironment.CurrentRoleInstance.Id + "_"
+        + webApplicationProjectName].Applications.First().ApplicationPoolName;
+
+    using (DirectoryEntry appPools = new DirectoryEntry(metabasePath))
+    {
+      using (DirectoryEntry devFabricAppPool
+              = appPools.Children.Find(appPoolName, "IIsApplicationPool"))
+      {
+        if (devFabricAppPool != null)
+        {
+          devFabricAppPool.InvokeSet("AppPoolIdentityType", new object[] { 3 });
+          devFabricAppPool.InvokeSet("WAMUserName", new object[] { appPoolUser });
+          devFabricAppPool.InvokeSet("WAMUserPass", new object[] { appPoolPass });
+          devFabricAppPool.Invoke("SetInfo", null);
+          devFabricAppPool.CommitChanges();
+        }
+      }
+    }
+  }
+  ...
+</pre>
+<p>You must also add references to your project for the <b>System.DirectoryServices</b> assembly (in the <b>.NET</b> tab of the <b>Add Reference</b> dialog)
+and <b>Microsoft.Web.Administration.dll</b> (open the <b>Browse</b> tab and navigate to your Windows\System32\inetsrv\ folder).</p>
+<p>&nbsp;</p>
+
+                  </div>
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="footerstrip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</body>
+</html>

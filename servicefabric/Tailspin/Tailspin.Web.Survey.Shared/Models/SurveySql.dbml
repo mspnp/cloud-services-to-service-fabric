@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="adatum-survey" Class="SurveySqlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Server=tcp:YourDBServerName.database.windows.net,1433;Database=adatum-survey;User ID=YourUserID@YourDBServerName;Password=YourPassword;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;" SettingsObjectName="Tailspin.Web.Survey.Shared.Properties.Settings" SettingsPropertyName="adatum_surveyConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Survey" Member="SurveyDatas">
+    <Type Name="SurveyData">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="SurveyData_ResponseData" Member="ResponseDatas" ThisKey="Id" OtherKey="SurveyId" Type="ResponseData" />
+      <Association Name="SurveyData_QuestionData" Member="QuestionDatas" ThisKey="Id" OtherKey="SurveyId" Type="QuestionData" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuestionResponse" Member="QuestionResponseDatas">
+    <Type Name="QuestionResponseData">
+      <Column Name="ResponseId" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QuestionId" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Answer" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="ResponseData_QuestionResponseData" Member="ResponseData" ThisKey="ResponseId" OtherKey="Id" Type="ResponseData" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="QuestionData_QuestionResponseData" Member="QuestionData" ThisKey="QuestionId" OtherKey="Id" Type="QuestionData" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Response" Member="ResponseDatas">
+    <Type Name="ResponseData">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SurveyId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="ResponseData_QuestionResponseData" Member="QuestionResponseDatas" ThisKey="Id" OtherKey="ResponseId" Type="QuestionResponseData" />
+      <Association Name="SurveyData_ResponseData" Member="SurveyData" ThisKey="SurveyId" OtherKey="Id" Type="SurveyData" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Question" Member="QuestionDatas">
+    <Type Name="QuestionData">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SurveyId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionText" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="QuestionType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="QuestionData_QuestionResponseData" Member="QuestionResponseDatas" ThisKey="Id" OtherKey="QuestionId" Type="QuestionResponseData" />
+      <Association Name="QuestionData_PossibleAnswer" Member="PossibleAnswerDatas" ThisKey="Id" OtherKey="QuestionId" Type="PossibleAnswerData" />
+      <Association Name="SurveyData_QuestionData" Member="SurveyData" ThisKey="SurveyId" OtherKey="Id" Type="SurveyData" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PossibleAnswer" Member="PossibleAnswerDatas">
+    <Type Name="PossibleAnswerData">
+      <Column Name="Id" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="QuestionId" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Answer" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Association Name="QuestionData_PossibleAnswer" Member="QuestionData" ThisKey="QuestionId" OtherKey="Id" Type="QuestionData" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>

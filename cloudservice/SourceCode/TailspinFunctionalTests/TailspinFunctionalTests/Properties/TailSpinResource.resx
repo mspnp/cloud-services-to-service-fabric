@@ -1,0 +1,351 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="addQuestionLink" xml:space="preserve">
+    <value>Add Question</value>
+  </data>
+  <data name="addToSurveyButton" xml:space="preserve">
+    <value>addToSurvey</value>
+  </data>
+  <data name="baseUrl" xml:space="preserve">
+    <value>https://127.0.0.1:444</value>
+  </data>
+  <data name="createButton" xml:space="preserve">
+    <value>create</value>
+  </data>
+  <data name="current" xml:space="preserve">
+    <value>current</value>
+  </data>
+  <data name="finishButton" xml:space="preserve">
+    <value>finish</value>
+  </data>
+  <data name="finishsurveyText" xml:space="preserve">
+    <value>Thank you for filling the survey!</value>
+  </data>
+  <data name="forwardSlash" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="innerText" xml:space="preserve">
+    <value>InnerText=</value>
+  </data>
+  <data name="mandatoryQuestion" xml:space="preserve">
+    <value>* You must provide a Question.</value>
+  </data>
+  <data name="mySurveyLink" xml:space="preserve">
+    <value>survey/adatum</value>
+  </data>
+  <data name="newQuestion" xml:space="preserve">
+    <value>newquestion</value>
+  </data>
+  <data name="newSurvey" xml:space="preserve">
+    <value>New Survey</value>
+  </data>
+  <data name="newsurveyUrl" xml:space="preserve">
+    <value>survey/adatum/newsurvey</value>
+  </data>
+  <data name="questionText" xml:space="preserve">
+    <value>ContentModel_Text</value>
+  </data>
+  <data name="quesTypeMultipleChoice" xml:space="preserve">
+    <value>multiplechoice</value>
+  </data>
+  <data name="quesTypeRating" xml:space="preserve">
+    <value>fivestars</value>
+  </data>
+  <data name="quesTypeSimpleText" xml:space="preserve">
+    <value>simpletext</value>
+  </data>
+  <data name="selectQuestionType" xml:space="preserve">
+    <value>ContentModel_Type</value>
+  </data>
+  <data name="tagnameA" xml:space="preserve">
+    <value>tagname=a</value>
+  </data>
+  <data name="tagNameH1" xml:space="preserve">
+    <value>tagname=H1</value>
+  </data>
+  <data name="tagNameH2" xml:space="preserve">
+    <value>tagname=H2</value>
+  </data>
+  <data name="tagnameListItem" xml:space="preserve">
+    <value>tagname=li</value>
+  </data>
+  <data name="tagnameSpan" xml:space="preserve">
+    <value>tagname=span</value>
+  </data>
+  <data name="tagnameStrong" xml:space="preserve">
+    <value>tagname=strong</value>
+  </data>
+  <data name="tagnameTD" xml:space="preserve">
+    <value>tagname=TD</value>
+  </data>
+  <data name="tailSpinPageTitle" xml:space="preserve">
+    <value>Tailspin - On boarding</value>
+  </data>
+  <data name="textcontent" xml:space="preserve">
+    <value>textcontent=</value>
+  </data>
+  <data name="thankyou" xml:space="preserve">
+    <value>thankyou</value>
+  </data>
+  <data name="titleText" xml:space="preserve">
+    <value>ContentModel_Title</value>
+  </data>
+  <data name="adatum" xml:space="preserve">
+    <value>/survey/adatum</value>
+  </data>
+  <data name="add" xml:space="preserve">
+    <value>add</value>
+  </data>
+  <data name="answer1" xml:space="preserve">
+    <value>answer1</value>
+  </data>
+  <data name="answer2" xml:space="preserve">
+    <value>answer2</value>
+  </data>
+  <data name="answer3" xml:space="preserve">
+    <value>answer3</value>
+  </data>
+  <data name="answer4" xml:space="preserve">
+    <value>answer4</value>
+  </data>
+  <data name="answerMultippleChoiceFinish" xml:space="preserve">
+    <value>ContentModel_PossibleAnswers</value>
+  </data>
+  <data name="answerSimpleTextFinish" xml:space="preserve">
+    <value>ContentModel_QuestionAnswers_0__Answer</value>
+  </data>
+  <data name="answerTextArea" xml:space="preserve">
+    <value>ContentModel_PossibleAnswers</value>
+  </data>
+  <data name="backToTailspinText" xml:space="preserve">
+    <value>Go back to Tailspin</value>
+  </data>
+  <data name="cancelLink" xml:space="preserve">
+    <value>cancel</value>
+  </data>
+  <data name="continueButton" xml:space="preserve">
+    <value>ContentPlaceholder_ContinueButton</value>
+  </data>
+  <data name="deleteLink1" xml:space="preserve">
+    <value>onclick=javascript: submitToDelete('/survey/adatum/</value>
+  </data>
+  <data name="deleteLink2" xml:space="preserve">
+    <value>/delete')</value>
+  </data>
+  <data name="johnDoe" xml:space="preserve">
+    <value>ADATUM\johndoe</value>
+  </data>
+  <data name="loginJohndoe" xml:space="preserve">
+    <value>ContentPlaceholder_UserList_0</value>
+  </data>
+  <data name="mandatoryAnswer" xml:space="preserve">
+    <value>* You must provide an answer.</value>
+  </data>
+  <data name="mandatoryTitle" xml:space="preserve">
+    <value>* You must provide a Title for the survey.</value>
+  </data>
+  <data name="myAccount" xml:space="preserve">
+    <value>My Account</value>
+  </data>
+  <data name="mySurveys" xml:space="preserve">
+    <value>My Surveys</value>
+  </data>
+  <data name="overridelink" xml:space="preserve">
+    <value>overridelink</value>
+  </data>
+  <data name="question1" xml:space="preserve">
+    <value>question1</value>
+  </data>
+  <data name="signout" xml:space="preserve">
+    <value>Signout</value>
+  </data>
+  <data name="simulatedIssuerPageTitle" xml:space="preserve">
+    <value>Adatum issuer</value>
+  </data>
+  <data name="simulatedIssuerUrl" xml:space="preserve">
+    <value>localhost/Adatum.SimulatedIssuer.v2/SimulatedWindowsAuthentication.aspx</value>
+  </data>
+  <data name="star1" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="star2" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="star3" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="star4" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="star5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="tailSpinSimulatedIssuerUrl" xml:space="preserve">
+    <value>localhost/Tailspin.SimulatedIssuer</value>
+  </data>
+  <data name="value" xml:space="preserve">
+    <value>value=</value>
+  </data>
+  <data name="mandatoryAnswerMultipleChoice" xml:space="preserve">
+    <value>* Answers must be supplied for the question.</value>
+  </data>
+  <data name="enterCheck" xml:space="preserve">
+    <value>&amp;#13;</value>
+  </data>
+  <data name="noSurveys" xml:space="preserve">
+    <value>There are no surveys.</value>
+  </data>
+  <data name="tagNameH3" xml:space="preserve">
+    <value>tagname=H3</value>
+  </data>
+  <data name="fabrikam" xml:space="preserve">
+    <value>/survey/fabrikam</value>
+  </data>
+  <data name="mary" xml:space="preserve">
+    <value>Fabrikam\mary</value>
+  </data>
+  <data name="deleteLinkFabrikam" xml:space="preserve">
+    <value>onclick=javascript: submitToDelete('/survey/fabrikam/</value>
+  </data>
+  <data name="mySurveyLinkFabrikam" xml:space="preserve">
+    <value>survey/fabrikam</value>
+  </data>
+  <data name="newsurveyUrlFabrikam" xml:space="preserve">
+    <value>survey/fabrikam/newsurvey</value>
+  </data>
+  <data name="simulatedIssuerPageTitleFabrikam" xml:space="preserve">
+    <value>Fabrikam issuer</value>
+  </data>
+  <data name="simulatedIssuerUrlFabrikam" xml:space="preserve">
+    <value>localhost/Fabrikam.SimulatedIssuer.v2/SimulatedWindowsAuthentication.aspx</value>
+  </data>
+  <data name="surveyAlreadyPresent1" xml:space="preserve">
+    <value>The name '</value>
+  </data>
+  <data name="surveyAlreadyPresent2" xml:space="preserve">
+    <value>' is already in use. Please choose another name.</value>
+  </data>
+  <data name="analyze" xml:space="preserve">
+    <value>analyze</value>
+  </data>
+  <data name="href" xml:space="preserve">
+    <value>href=</value>
+  </data>
+</root>

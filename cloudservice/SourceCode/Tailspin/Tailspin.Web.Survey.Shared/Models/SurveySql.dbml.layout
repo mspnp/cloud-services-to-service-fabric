@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataClasses1">
+  <DataContextMoniker Name="/SurveySqlDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a6a8ff14-d21f-44f2-bd93-0483f46abd23" absoluteBounds="0.75, 3.125, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/SurveySqlDataContext/SurveyData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6a331e4a-979c-45d4-9edd-987a6bd47b3e" absoluteBounds="0.765, 3.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a22be303-02b6-465b-a378-20967a3dd678" absoluteBounds="6.25, 2.125, 2, 1.3862939453125005">
+      <DataClassMoniker Name="/SurveySqlDataContext/QuestionResponseData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f4933b75-c4b3-4e87-b5b5-ea98de2e12c8" absoluteBounds="6.265, 2.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d36a0b44-7121-4a24-ae03-3ccb503594ad" absoluteBounds="3.5, 2, 2, 1.3862939453125003">
+      <DataClassMoniker Name="/SurveySqlDataContext/ResponseData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8d0481d9-98f9-4fec-8a08-4543262c2b0b" absoluteBounds="3.515, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 2.75564697265625); (6.25 : 2.75564697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/SurveySqlDataContext/ResponseData/ResponseData_QuestionResponseData" />
+      <nodes>
+        <classShapeMoniker Id="d36a0b44-7121-4a24-ae03-3ccb503594ad" />
+        <classShapeMoniker Id="a22be303-02b6-465b-a378-20967a3dd678" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 3.125); (1.75 : 2.5624995); (3.5 : 2.5624995)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SurveySqlDataContext/SurveyData/SurveyData_ResponseData" />
+      <nodes>
+        <classShapeMoniker Id="a6a8ff14-d21f-44f2-bd93-0483f46abd23" />
+        <classShapeMoniker Id="d36a0b44-7121-4a24-ae03-3ccb503594ad" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="a8ab8dc1-1445-48ba-b5aa-7743f66742fb" absoluteBounds="3.5, 4.5, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/SurveySqlDataContext/QuestionData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e53dfc2a-c188-4acb-b6a8-1fe65f7b672b" absoluteBounds="3.5149999999999997, 4.96, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 4.53125); (6.59375 : 4.53125); (6.59375 : 3.5112939453125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SurveySqlDataContext/QuestionData/QuestionData_QuestionResponseData" />
+      <nodes>
+        <classShapeMoniker Id="a8ab8dc1-1445-48ba-b5aa-7743f66742fb" />
+        <classShapeMoniker Id="a22be303-02b6-465b-a378-20967a3dd678" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.75 : 4.5112939453125); (1.75 : 5.29494516145833); (3.5 : 5.29494516145833)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SurveySqlDataContext/SurveyData/SurveyData_QuestionData" />
+      <nodes>
+        <classShapeMoniker Id="a6a8ff14-d21f-44f2-bd93-0483f46abd23" />
+        <classShapeMoniker Id="a8ab8dc1-1445-48ba-b5aa-7743f66742fb" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="68138185-6aeb-44e7-ba39-632f18f002db" absoluteBounds="7, 4.625, 2, 1.3862939453125">
+      <DataClassMoniker Name="/SurveySqlDataContext/PossibleAnswerData" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da89f583-5688-4cc5-afd5-c85008f20c4a" absoluteBounds="7.015, 5.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.5 : 5.31814697265625); (7 : 5.31814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/SurveySqlDataContext/QuestionData/QuestionData_PossibleAnswer" />
+      <nodes>
+        <classShapeMoniker Id="a8ab8dc1-1445-48ba-b5aa-7743f66742fb" />
+        <classShapeMoniker Id="68138185-6aeb-44e7-ba39-632f18f002db" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
