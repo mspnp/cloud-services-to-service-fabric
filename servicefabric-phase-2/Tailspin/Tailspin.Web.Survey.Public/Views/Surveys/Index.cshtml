@@ -1,0 +1,27 @@
+﻿@model PageViewData<IEnumerable<Survey>>
+
+<div id="surveyTitle">
+    <h1>
+        Existing surveys
+    </h1>
+</div>
+
+@if (!Model.ContentModel.Any())
+{
+    <div class="noResults">
+        <h3>No surveys have been added yet.</h3>
+    </div>
+}
+else
+{
+    <div id="surveys">
+        <ul>
+            @foreach (var survey in Model.ContentModel)
+            {
+            <li>
+                @Html.ActionLink(survey.Title, "Display", "Surveys", new { surveySlug = survey.SlugName }, null)
+            </li>
+            }
+        </ul>
+    </div>
+}

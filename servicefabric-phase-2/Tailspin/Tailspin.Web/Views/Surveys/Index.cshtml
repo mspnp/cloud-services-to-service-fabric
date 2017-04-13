@@ -1,0 +1,58 @@
+﻿@model PageViewData<IEnumerable<SurveyModel>>
+
+
+@section MenuContent
+{
+    <ul>
+        <li>@Html.ActionLink("New Survey", "New", "Surveys")</li>
+        <li class="current"><a>My Surveys</a></li>
+    </ul>
+    <div class="clear">
+    </div>
+}
+
+<div class="breadcrumbs">
+    My Surveys
+</div>
+@if (!this.Model.ContentModel.Any()) {
+    <div class="noResults">
+        <h3>There are no surveys.</h3>
+    </div>
+}
+else
+{
+    <table border="0" cellspacing="0" cellpadding="0" class="tableGrid">
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Created On
+            </th>
+            <th>
+                Analyze
+            </th>
+        </tr>
+    @foreach (var survey in this.Model.ContentModel)
+    {
+        <tr>
+            <td>
+                @Html.SurveyLink(survey.Title, survey.SlugName)
+            </td>
+            <td>
+                @survey.CreatedOn.ToLongDateString()
+            </td>
+            <td>
+                @Html.ActionLink("Analyze", "Analyze", "Surveys", new { surveySlug = survey.SlugName }, new { })
+            </td>
+        </tr>
+    }
+    </table>
+}
+
+<script type="text/javascript">
+    function submitToDelete(url) {
+        document.forms[0].action = url 
+        document.forms[0].submit();
+    }
+</script>

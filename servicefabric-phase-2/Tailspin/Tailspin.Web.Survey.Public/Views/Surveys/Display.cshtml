@@ -1,0 +1,31 @@
+﻿@model PageViewData<SurveyAnswer>
+
+<div id="surveyTitle">
+    <h1>
+        @Model.ContentModel.Title
+    </h1>
+</div>
+@using (Html.BeginForm())
+{
+    <div id="surveyForm">
+        <ol>
+            @for (int i = 0; i < this.Model.ContentModel.QuestionAnswers.Count; i++)
+            {
+            <li>
+                <div class="questionText">
+                    @this.Model.ContentModel.QuestionAnswers[i].QuestionText
+                    @Html.ValidationMessageFor(m => m.ContentModel.QuestionAnswers[i].Answer)
+                </div>
+                @Html.EditorFor(m => m.ContentModel.QuestionAnswers[i], QuestionTemplateFactory.Create(Model.ContentModel.QuestionAnswers[i]))
+            </li>
+            }
+        </ol>
+        <input id="finish" type="submit" value="Finish" class="bigOrangeButton" />
+    </div>
+}
+
+@section scripts
+{
+    <script src="@Url.Content("~/js/jquery.rating.js")" language="javascript" type="text/javascript"></script>
+}
+

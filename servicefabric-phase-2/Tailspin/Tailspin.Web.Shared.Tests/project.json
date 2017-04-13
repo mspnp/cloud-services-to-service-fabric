@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+
+  "testRunner": "mstest",
+
+  "dependencies": {
+    "dotnet-test-mstest": "1.1.2-preview",
+    "Tailspin.Web.Shared": "1.0.0-*",
+    "MSTest.TestFramework": "1.0.6-preview",
+    "Newtonsoft.Json": "9.0.1"
+  },
+
+  "frameworks": {
+    "net452": {
+    }
+  }
+}

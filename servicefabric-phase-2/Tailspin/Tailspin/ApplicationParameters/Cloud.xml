@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/Tailspin" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <Parameters>
+    <Parameter Name="Public_InstanceCount" Value="-1" />
+    <Parameter Name="Web_InstanceCount" Value="-1" />
+    <Parameter Name="Web_RedisCacheConnectionString" Value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
+    <Parameter Name="Web_TraceEventTypeFilter" Value="Information" />
+    <Parameter Name="Web_PublicSurveyWebsiteUrl" Value="http://127.0.0.1:81" />
+    <Parameter Name="WebSurveyPublic_RedisCacheConnectionString" Value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
+    <Parameter Name="WebSurveyPublic_TraceEventTypeFilter" Value="Information" />
+  </Parameters>
+</Application>

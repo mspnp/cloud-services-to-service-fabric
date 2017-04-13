@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0-*",
+
+  "testRunner": "mstest",
+
+  "dependencies": {
+    "Autofac": "4.3.0",
+    "dotnet-test-mstest": "1.1.2-preview",
+    "Moq": "4.5.23",
+    "MSTest.TestFramework": "1.0.6-preview",
+    "Tailspin.SurveyAnalysisService.Client": "1.0.0",
+    "Tailspin.Web": "1.0.0"
+  },
+
+  "frameworks": {
+    "net452": {
+    }
+  }
+}

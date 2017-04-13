@@ -1,0 +1,26 @@
+﻿@model QuestionAnswersSummary
+<span class="questionText">
+    @Model.QuestionText
+</span>
+<div class="answer">
+    @*TODO: Move to a helper method? Or move these variables into the model? *@
+    @{ var summary = JsonConvert.DeserializeObject<Dictionary<string, int>>(Model.AnswersSummary); }    
+    @{ var total = summary.Total(); }   
+    @foreach (var possibleAnswer in this.Model.PossibleAnswers.Split('\n')) { 
+        <div style="padding-top:10px;padding-bottom:10px">
+            <span>@possibleAnswer:</span>
+            @if (summary.ContainsKey(possibleAnswer))
+            {
+                <span>@summary[possibleAnswer] responses</span>
+                var percentage = summary[possibleAnswer].PercentOf(total);
+                <div class="graph">
+                    <div class="graphmask" style="width:@percentage%;"><span>@percentage%</span></div>
+                </div>
+            }
+            else
+            {
+                <span>0 responses</span>
+            }
+        </div>
+   }
+</div>

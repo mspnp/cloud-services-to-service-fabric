@@ -1,0 +1,65 @@
+﻿@model MasterPageViewData
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailspin - @Model.Title</title>
+    <link href="@Url.Content("~/css/baseStyle.css")" rel="stylesheet" type="text/css" media="screen" />
+    @RenderSection("Head", required: false)
+    <asp:ContentPlaceHolder runat="server" ID="Head" />
+</head>
+
+<body>
+    <div id="header">
+        <div id="top">
+            <div id="topNav">
+                <ul>
+                    <li><a href="#">Join</a></li>
+                    <li>| <a href="#">Learn more</a></li>
+                </ul>
+            </div><div class="clear"></div>
+        </div>
+    </div>
+    <div id="logo">
+        <img src="@Url.Content("~/images/tailspin-logo.png")" alt="Powered by Tailspin" width="135" height="54" align="top" />
+    </div>
+    <div id="search">
+        <table border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div id="container">
+        <div id="navMenu">
+            @RenderSection("MenuContent", required: false)
+            <div class="clear"></div>
+        </div>
+        <div id="main">
+            @RenderBody()
+
+            <div id="footer">
+                <div id="footerBottom">
+                    <div id="copyright">Copyright &copy; 2016 Tailspin</div>
+                    <ul>
+                        <li>&nbsp;</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="containerBottom"></div>
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

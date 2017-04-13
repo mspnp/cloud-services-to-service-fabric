@@ -1,0 +1,18 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="NuGet.Package.props "/>
+  <!-- Hook into the last MSBuild step before IncrementalClean so we can write our package files into the FileWrites list -->
+  <PropertyGroup>
+    <PrepareForRunDependsOn>$(PrepareForRunDependsOn); AfterCopyFilesToOutputDirectory</PrepareForRunDependsOn>
+  </PropertyGroup>
+  <Target Name="AfterCopyFilesToOutputDirectory" DependsOnTargets="DownloadNuGet">
+    <Exec Command="&quot;$(NuGet)&quot; pack -OutputDirectory &quot;$(NuGetOutputDirectory)&quot; -Properties TargetPath=&quot;$(TargetPath)&quot;" />
+    <ItemGroup>
+      <NuGetOutputFiles Include="$(TargetDir)*.nupkg" />
+      <FileWrites Include="@(NuGetOutputFiles)" />
+    </ItemGroup>
+  </Target>
+  <Target Name="DownloadNuGet" Condition=" '$(OS)' == 'Windows_NT' And !Exists('$(NuGet)') ">
+    <MakeDir Directories="$(NuGetPath)" Condition=" !Exists('$(NuGetPath)') " />
+    <Exec Command="&quot;$(PowerShell)&quot; -NoProfile -Command &quot;&amp; { Invoke-WebRequest '$(NuGetUrl)' -OutFile '$(NuGet)' }&quot;" />
+  </Target>
+</Project>

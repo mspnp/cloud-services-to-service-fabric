@@ -1,0 +1,9 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <NuGetPath Condition=" '$(NuGetPath)' == '' ">$(MSBuildThisFileDirectory).nuget</NuGetPath>
+    <NuGetUrl Condition=" '$(NuGetUrl)' == '' ">https://dist.nuget.org/win-x86-commandline/latest/nuget.exe</NuGetUrl>
+    <NuGet Condition=" '$(NuGet)' == '' ">$(NuGetPath)\nuget.exe</NuGet>
+    <PowerShell Condition=" '$(PowerShell)' == '' ">%WINDIR%\System32\WindowsPowerShell\v1.0\powershell.exe</PowerShell>
+    <NuGetOutputDirectory>$(TargetDir.TrimEnd('$([System.IO.Path]::DirectorySeparatorChar)'))</NuGetOutputDirectory>
+  </PropertyGroup>
+</Project>

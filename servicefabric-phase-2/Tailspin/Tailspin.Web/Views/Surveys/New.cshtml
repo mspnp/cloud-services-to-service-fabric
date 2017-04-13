@@ -1,0 +1,68 @@
+﻿@model PageViewData<SurveyModel>
+
+@section MenuContent
+{
+    <ul>
+        <li class="current"><a>New Survey</a></li>
+        <li>@Html.ActionLink("My Surveys", "Index", "Surveys")</li>
+    </ul>
+    <div class="clear">
+    </div>
+}
+
+<div class="breadcrumbs">
+    New Survey
+</div>
+<h2>
+    Create a new survey</h2>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.AntiForgeryToken()
+    <dl>
+        <dt>
+            @Html.LabelFor(model => model.ContentModel.Title)</dt>
+        <dd>
+            @Html.TextBoxFor(model => model.ContentModel.Title, new { size = "45" })
+            @Html.ValidationMessageFor(model => model.ContentModel.Title)
+        </dd>
+    </dl>
+    <br />
+    <table>
+        <tr>
+            <th align="left">
+                Questions
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <a href="#" onclick="javascript: submitToNewQuestion()">Add Question</a>
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.ContentModel.Questions)            
+            </td>
+        </tr>
+        @foreach (var question in this.Model.ContentModel.Questions)
+        {
+            <tr>
+                <td>
+                    @question.Text
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    <br />
+    <p>
+        <input id="create" type="submit" value="Create" class="bigOrangeButton" />
+    </p>
+}
+
+<script type="text/javascript">
+    function submitToNewQuestion() {
+        document.forms[0].action = '@Url.Action("NewQuestion", "Surveys")'
+        document.forms[0].submit();
+    }
+</script>
+
