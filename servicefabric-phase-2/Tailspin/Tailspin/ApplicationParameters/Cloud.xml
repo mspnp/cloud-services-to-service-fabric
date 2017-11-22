@@ -1,11 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/Tailspin" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
+    <Parameter Name="Tailspin.SurveyResponseService_PartitionCount" Value="1" />
+    <Parameter Name="Tailspin.SurveyResponseService_MinReplicaSetSize" Value="3" />
+    <Parameter Name="Tailspin.SurveyResponseService_TargetReplicaSetSize" Value="3" />
+    <Parameter Name="Tailspin.SurveyResponseService_DataConnectionString" Value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=YourPrimaryAccessKey" />
+    <Parameter Name="SurveyManagementService_InstanceCount" Value="-1" />
+    <Parameter Name="SurveyManagementService_DataConnectionString" Value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=YourPrimaryAccessKey" />
+    <Parameter Name="SurveyManagementService_CosmosConnectionString" Value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=YourPrimaryAccessKey" />
+    <Parameter Name="SurveyAnswerService_InstanceCount" Value="-1" />
+    <Parameter Name="SurveyAnswerService_DataConnectionString" Value="DefaultEndpointsProtocol=https;AccountName=YourStorageAccount;AccountKey=YourPrimaryAccessKey" />
+    <Parameter Name="SurveyAnalysisService_InstanceCount" Value="-1" />
+    <Parameter Name="SurveyAnalysisService_RedisCacheConnectionString" Value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
     <Parameter Name="Public_InstanceCount" Value="-1" />
     <Parameter Name="Web_InstanceCount" Value="-1" />
     <Parameter Name="Web_RedisCacheConnectionString" Value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
     <Parameter Name="Web_TraceEventTypeFilter" Value="Information" />
-    <Parameter Name="Web_PublicSurveyWebsiteUrl" Value="http://127.0.0.1:81" />
+    <Parameter Name="Web_PublicSurveyWebsiteUrl" Value="http://127.0.0.1:8308" />
     <Parameter Name="WebSurveyPublic_RedisCacheConnectionString" Value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
     <Parameter Name="WebSurveyPublic_TraceEventTypeFilter" Value="Information" />
   </Parameters>

@@ -2,11 +2,12 @@
 {
     using System;
     using System.Linq;
+    using ClientModels = Tailspin.Shared.Models.Client;
 
     public static class MappingExtensions
     {
         internal static Tailspin.Web.Shared.Models.Survey ToSurvey(
-            this Tailspin.SurveyManagementService.Client.Models.SurveyInformation surveyInformation)
+            this ClientModels.SurveyInformation surveyInformation)
         {
             return new Shared.Models.Survey(surveyInformation.SlugName)
             {
@@ -15,7 +16,7 @@
             };
         }
 
-        internal static Tailspin.Web.Shared.Models.Survey ToSurvey(this Tailspin.SurveyManagementService.Client.Models.Survey survey)
+        internal static Tailspin.Web.Shared.Models.Survey ToSurvey(this ClientModels.Survey survey)
         {
             if (survey == null)
             {
@@ -31,7 +32,7 @@
             };
         }
 
-        internal static Tailspin.Web.Shared.Models.Question ToQuestion(this Tailspin.SurveyManagementService.Client.Models.Question question)
+        internal static Tailspin.Web.Shared.Models.Question ToQuestion(this ClientModels.Question question)
         {
             if (question == null)
             {
@@ -46,18 +47,18 @@
             };
         }
 
-        internal static Tailspin.Web.Shared.Models.QuestionType ToQuestionType(this Tailspin.SurveyManagementService.Client.Models.QuestionType questionType)
+        internal static Tailspin.Web.Shared.Models.QuestionType ToQuestionType(this ClientModels.QuestionType questionType)
         {
             Tailspin.Web.Shared.Models.QuestionType result;
             switch (questionType)
             {
-                case SurveyManagementService.Client.Models.QuestionType.FiveStars:
+                case ClientModels.QuestionType.FiveStars:
                     result = Shared.Models.QuestionType.FiveStars;
                     break;
-                case SurveyManagementService.Client.Models.QuestionType.MultipleChoice:
+                case ClientModels.QuestionType.MultipleChoice:
                     result = Shared.Models.QuestionType.MultipleChoice;
                     break;
-                case SurveyManagementService.Client.Models.QuestionType.SimpleText:
+                case ClientModels.QuestionType.SimpleText:
                     result = Shared.Models.QuestionType.SimpleText;
                     break;
                 default:
@@ -67,19 +68,19 @@
             return result;
         }
 
-        internal static Tailspin.SurveyAnswerService.Client.Models.QuestionType ToQuestionType(this Tailspin.Web.Shared.Models.QuestionType questionType)
+        internal static ClientModels.QuestionType ToQuestionType(this Tailspin.Web.Shared.Models.QuestionType questionType)
         {
-            Tailspin.SurveyAnswerService.Client.Models.QuestionType result;
+            ClientModels.QuestionType result;
             switch (questionType)
             {
                 case Tailspin.Web.Shared.Models.QuestionType.FiveStars:
-                    result = Tailspin.SurveyAnswerService.Client.Models.QuestionType.FiveStars;
+                    result = ClientModels.QuestionType.FiveStars;
                     break;
                 case Tailspin.Web.Shared.Models.QuestionType.MultipleChoice:
-                    result = Tailspin.SurveyAnswerService.Client.Models.QuestionType.MultipleChoice;
+                    result = ClientModels.QuestionType.MultipleChoice;
                     break;
                 case Tailspin.Web.Shared.Models.QuestionType.SimpleText:
-                    result = Tailspin.SurveyAnswerService.Client.Models.QuestionType.SimpleText;
+                    result = ClientModels.QuestionType.SimpleText;
                     break;
                 default:
                     throw new ArgumentException($"Unsupported question type: {questionType}");
@@ -88,7 +89,7 @@
             return result;
         }
 
-        internal static Tailspin.Web.Shared.Models.SurveyAnswer ToSurveyAnswer(this Tailspin.SurveyManagementService.Client.Models.Survey survey)
+        internal static Tailspin.Web.Shared.Models.SurveyAnswer ToSurveyAnswer(this ClientModels.Survey survey)
         {
             if (survey == null)
             {
@@ -103,7 +104,7 @@
             };
         }
 
-        internal static Tailspin.Web.Shared.Models.QuestionAnswer ToQuestionAnswer(this Tailspin.SurveyManagementService.Client.Models.Question question)
+        internal static Tailspin.Web.Shared.Models.QuestionAnswer ToQuestionAnswer(this ClientModels.Question question)
         {
             if (question == null)
             {
@@ -118,14 +119,14 @@
             };
         }
 
-        internal static Tailspin.SurveyAnswerService.Client.Models.SurveyAnswer ToSurveyAnswer(this Tailspin.Web.Shared.Models.SurveyAnswer surveyAnswer)
+        internal static ClientModels.SurveyAnswer ToSurveyAnswer(this Tailspin.Web.Shared.Models.SurveyAnswer surveyAnswer)
         {
             if (surveyAnswer == null)
             {
                 throw new ArgumentNullException(nameof(surveyAnswer));
             }
 
-            return new SurveyAnswerService.Client.Models.SurveyAnswer()
+            return new ClientModels.SurveyAnswer()
             {
                 CreatedOn = DateTime.UtcNow,
                 QuestionAnswers = surveyAnswer.QuestionAnswers.Select(qa => qa.ToQuestionAnswer()).ToList(),
@@ -134,14 +135,14 @@
             };
         }
 
-        internal static Tailspin.SurveyAnswerService.Client.Models.QuestionAnswer ToQuestionAnswer(this Tailspin.Web.Shared.Models.QuestionAnswer questionAnswer)
+        internal static ClientModels.QuestionAnswer ToQuestionAnswer(this Tailspin.Web.Shared.Models.QuestionAnswer questionAnswer)
         {
             if (questionAnswer == null)
             {
                 throw new ArgumentNullException(nameof(questionAnswer));
             }
 
-            return new SurveyAnswerService.Client.Models.QuestionAnswer()
+            return new ClientModels.QuestionAnswer()
             {
                 Answer = questionAnswer.Answer,
                 PossibleAnswers = questionAnswer.PossibleAnswers,

@@ -25,7 +25,7 @@ namespace Tailspin.Web.Survey.Public.Tests.Utility
             try
             {
                 await action();
-                empty = string.Format(CultureInfo.CurrentCulture, FrameworkMessages.NoExceptionThrown, new object[] { message, Type.GetTypeFromHandle(typeof(T).TypeHandle).Name });
+                empty = string.Format(CultureInfo.CurrentCulture, "No Exception Thrown", new object[] { message, Type.GetTypeFromHandle(typeof(T).TypeHandle).Name });
                 HandleFail("Assert.ThrowsException", empty, parameters);
                 return default(T);
             }
@@ -34,7 +34,7 @@ namespace Tailspin.Web.Survey.Public.Tests.Utility
                 Exception exception = exception1;
                 if (!typeof(T).Equals(exception.GetType()))
                 {
-                    empty = string.Format(CultureInfo.CurrentCulture, FrameworkMessages.WrongExceptionThrown, new object[] { message, Type.GetTypeFromHandle(typeof(T).TypeHandle).Name, exception.GetType().Name, exception.Message, exception.StackTrace });
+                    empty = string.Format(CultureInfo.CurrentCulture, "Wrong Exception Thrown", new object[] { message, Type.GetTypeFromHandle(typeof(T).TypeHandle).Name, exception.GetType().Name, exception.Message, exception.StackTrace });
                     HandleFail("Assert.ThrowsException", empty, parameters);
                 }
                 t = (T)exception;
@@ -46,12 +46,12 @@ namespace Tailspin.Web.Survey.Public.Tests.Utility
         {
             if (input == null)
             {
-                return FrameworkMessages.Common_NullInMessages.ToString();
+                return "Common_Null In Messages";
             }
             string str = input.ToString();
             if (str == null)
             {
-                return FrameworkMessages.Common_ObjectString.ToString();
+                return "Common_Object String";
             }
             return Assert.ReplaceNullChars(str);
         }
@@ -63,7 +63,7 @@ namespace Tailspin.Web.Survey.Public.Tests.Utility
             {
                 empty = (parameters != null ? string.Format(CultureInfo.CurrentCulture, ReplaceNulls(message), parameters) : ReplaceNulls(message));
             }
-            throw new AssertFailedException(string.Format(CultureInfo.CurrentCulture, FrameworkMessages.AssertionFailed, new object[] { assertionName, empty }));
+            throw new AssertFailedException(string.Format(CultureInfo.CurrentCulture, "Assertion Failed", new object[] { assertionName, empty }));
         }
     }
 }

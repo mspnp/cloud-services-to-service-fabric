@@ -1,21 +1,24 @@
 ﻿namespace Tailspin.Web.Survey.Public
 {
-    using System;
     using Autofac;
-    using Microsoft.ServiceFabric.Services.Remoting.Client;
-    using SurveyAnswerService.Client;
-    using SurveyManagementService.Client;
+    using Tailspin.SurveyAnswerService.Client;
+    using Tailspin.SurveyManagementService.Client;
+    using Tailspin.SurveyResponseService.Client;
 
     public class ContainerBootstrapperModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
             builder
-                .Register(c => ServiceProxy.Create<ISurveyManagementService>(new Uri("fabric:/Tailspin.SurveyManagementService.Application/SurveyManagementService")))
+                .Register(c => new SurveyManagementService())
                 .As<ISurveyManagementService>();
             builder
-                .Register(c => ServiceProxy.Create<ISurveyAnswerService>(new Uri("fabric:/Tailspin.SurveyAnswerService.Application/SurveyAnswerService")))
+                .Register(c => new SurveyAnswerService())
                 .As<ISurveyAnswerService>();
+            builder
+                .Register(c => new SurveyResponseService())
+                .As<ISurveyResponseService>();
+            
         }
     }
 }

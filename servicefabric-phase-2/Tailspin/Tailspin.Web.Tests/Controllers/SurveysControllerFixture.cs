@@ -8,12 +8,14 @@
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Moq;
     using Newtonsoft.Json;
-    using Tailspin.SurveyAnswerService.Client;
-    using Tailspin.SurveyManagementService.Client;
-    using Tailspin.SurveyAnalysisService.Client;
     using Tailspin.Web.Controllers;
     using Tailspin.Web.Models;
     using Tailspin.Web.Shared.Models;
+    using Tailspin.SurveyAnswerService.Client;
+    using Tailspin.SurveyManagementService.Client;
+    using Tailspin.SurveyAnalysisService.Client;
+    using ClientModels = Tailspin.Shared.Models.Client;
+    using Tailspin.Web.Shared;
 
     [TestClass]
     public class SurveysControllerFixture
@@ -23,7 +25,7 @@
         {
             var surveyManagementService = new Mock<ISurveyManagementService>();
             surveyManagementService.Setup(s => s.ListSurveysAsync())
-                .ReturnsAsync(new List<Tailspin.SurveyManagementService.Client.Models.SurveyInformation>());
+                .ReturnsAsync(new List<ClientModels.SurveyInformation>());
             using (var controller = new SurveysController(surveyManagementService.Object, new Mock<ISurveyAnswerService>().Object, new Mock<ISurveyAnalysisService>().Object))
             {
                 var mockTempDataDictionary = new Mock<ITempDataDictionary>();
@@ -40,7 +42,7 @@
         {
             var surveyManagementService = new Mock<ISurveyManagementService>();
             surveyManagementService.Setup(s => s.ListSurveysAsync())
-                .ReturnsAsync(new List<Tailspin.SurveyManagementService.Client.Models.SurveyInformation>());
+                .ReturnsAsync(new List<ClientModels.SurveyInformation>());
             using (var controller = new SurveysController(surveyManagementService.Object, new Mock<ISurveyAnswerService>().Object, new Mock<ISurveyAnalysisService>().Object))
             {
                 var mockTempDataDictionary = new Mock<ITempDataDictionary>();
@@ -195,7 +197,7 @@
             }
 
             surveyManagementService.Verify(r => r.PublishSurveyAsync(
-                It.Is<Tailspin.SurveyManagementService.Client.Models.Survey>(s => s.SlugName == "slug-name")), Times.Once());
+                It.Is<ClientModels.Survey>(s => s.SlugName == "slug-name")), Times.Once());
         }
 
         [TestMethod]
@@ -225,7 +227,7 @@
             }
 
             surveyManagementService.Verify(r => r.PublishSurveyAsync(
-                It.Is<Tailspin.SurveyManagementService.Client.Models.Survey>(s => true)), Times.Once());
+                It.Is<ClientModels.Survey>(s => true)), Times.Once());
         }
 
         [TestMethod]
@@ -257,7 +259,7 @@
             }
 
             surveyManagementService.Verify(r => r.PublishSurveyAsync(
-                It.Is<Tailspin.SurveyManagementService.Client.Models.Survey>(s => questionsToBeCopied.Count == s.Questions.Count)), Times.Once());
+                It.Is<ClientModels.Survey>(s => questionsToBeCopied.Count == s.Questions.Count)), Times.Once());
         }
 
         [TestMethod]
@@ -885,7 +887,7 @@
         {
             var mockSurveyAnswerService = new Mock<ISurveyAnswerService>();
             mockSurveyAnswerService.Setup(r => r.GetSurveyAnswerBrowsingContextAsync(It.IsAny<string>(), It.IsAny<string>()))
-                .ReturnsAsync(new SurveyAnswerService.Client.Models.SurveyAnswerBrowsingContext { PreviousAnswerId = string.Empty, NextAnswerId = string.Empty });
+                .ReturnsAsync(new ClientModels.SurveyAnswerBrowsingContext { PreviousAnswerId = string.Empty, NextAnswerId = string.Empty });
 
             using (var controller = new SurveysController(new Mock<ISurveyManagementService>().Object, mockSurveyAnswerService.Object, new Mock<ISurveyAnalysisService>().Object))
             {
