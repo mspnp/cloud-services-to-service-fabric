@@ -2,8 +2,8 @@
 {
     using Autofac;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using SurveyAnswerService.Client;
-    using SurveyManagementService.Client;
+    using Tailspin.SurveyAnswerService.Client;
+    using Tailspin.SurveyManagementService.Client;
 
     [TestClass]
     public class ContainerBootstrapperModuleFixture

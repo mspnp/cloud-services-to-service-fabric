@@ -3,17 +3,18 @@
     using Shared.Models;
     using System;
     using System.Linq;
+    using ClientModels = Tailspin.Shared.Models.Client;
 
     internal static class MappingExtensions
     {
-        internal static Tailspin.SurveyManagementService.Client.Models.Survey ToSurvey(this SurveyModel surveyModel)
+        internal static ClientModels.Survey ToSurvey(this SurveyModel surveyModel)
         {
             if (surveyModel == null)
             {
                 throw new ArgumentNullException(nameof(surveyModel));
             }
 
-            return new SurveyManagementService.Client.Models.Survey()
+            return new ClientModels.Survey()
             {
                 CreatedOn = surveyModel.CreatedOn,
                 Questions = surveyModel.Questions.Select(q => q.ToQuestion()).ToList(),
@@ -22,14 +23,14 @@
             };
         }
 
-        internal static Tailspin.SurveyManagementService.Client.Models.Question ToQuestion(this Tailspin.Web.Shared.Models.Question question)
+        internal static ClientModels.Question ToQuestion(this Tailspin.Web.Shared.Models.Question question)
         {
             if (question == null)
             {
                 throw new ArgumentNullException(nameof(question));
             }
 
-            return new SurveyManagementService.Client.Models.Question()
+            return new ClientModels.Question()
             {
                 PossibleAnswers = question.PossibleAnswers,
                 Text = question.Text,
@@ -37,19 +38,19 @@
             };
         }
 
-        internal static Tailspin.SurveyManagementService.Client.Models.QuestionType ToQuestionType(this Tailspin.Web.Shared.Models.QuestionType questionType)
+        internal static ClientModels.QuestionType ToQuestionType(this Tailspin.Web.Shared.Models.QuestionType questionType)
         {
-            Tailspin.SurveyManagementService.Client.Models.QuestionType result;
+            ClientModels.QuestionType result;
             switch (questionType)
             {
                 case Tailspin.Web.Shared.Models.QuestionType.FiveStars:
-                    result = SurveyManagementService.Client.Models.QuestionType.FiveStars;
+                    result = ClientModels.QuestionType.FiveStars;
                     break;
                 case Tailspin.Web.Shared.Models.QuestionType.MultipleChoice:
-                    result = SurveyManagementService.Client.Models.QuestionType.MultipleChoice;
+                    result = ClientModels.QuestionType.MultipleChoice;
                     break;
                 case Tailspin.Web.Shared.Models.QuestionType.SimpleText:
-                    result = SurveyManagementService.Client.Models.QuestionType.SimpleText;
+                    result = ClientModels.QuestionType.SimpleText;
                     break;
                 default:
                     throw new ArgumentException($"Invalid question type: {questionType}");
@@ -58,7 +59,7 @@
             return result;
         }
 
-        internal static SurveyModel ToSurveyModel(this Tailspin.SurveyManagementService.Client.Models.SurveyInformation surveyInformation)
+        internal static SurveyModel ToSurveyModel(this ClientModels.SurveyInformation surveyInformation)
         {
             if (surveyInformation == null)
             {
@@ -72,7 +73,7 @@
             };
         }
 
-        internal static BrowseResponseModel ToBrowseResponseModel(this Tailspin.SurveyAnswerService.Client.Models.SurveyAnswerBrowsingContext browsingContext)
+        internal static BrowseResponseModel ToBrowseResponseModel(this ClientModels.SurveyAnswerBrowsingContext browsingContext)
         {
             if (browsingContext == null)
             {
@@ -87,7 +88,7 @@
             };
         }
 
-        internal static Tailspin.Web.Shared.Models.SurveyAnswer ToSurveyAnswer(this Tailspin.SurveyAnswerService.Client.Models.SurveyAnswer surveyAnswer)
+        internal static Tailspin.Web.Shared.Models.SurveyAnswer ToSurveyAnswer(this ClientModels.SurveyAnswer surveyAnswer)
         {
             if (surveyAnswer == null)
             {
@@ -103,7 +104,7 @@
             };
         }
 
-        internal static Tailspin.Web.Shared.Models.QuestionAnswer ToQuestionAnswer(this Tailspin.SurveyAnswerService.Client.Models.QuestionAnswer questionAnswer)
+        internal static Tailspin.Web.Shared.Models.QuestionAnswer ToQuestionAnswer(this ClientModels.QuestionAnswer questionAnswer)
         {
             if (questionAnswer == null)
             {
@@ -119,18 +120,18 @@
             };
         }
 
-        internal static Tailspin.Web.Shared.Models.QuestionType ToQuestionType(this Tailspin.SurveyAnswerService.Client.Models.QuestionType questionType)
+        internal static Tailspin.Web.Shared.Models.QuestionType ToQuestionType(this ClientModels.QuestionType questionType)
         {
             Tailspin.Web.Shared.Models.QuestionType result;
             switch (questionType)
             {
-                case SurveyAnswerService.Client.Models.QuestionType.FiveStars:
+                case ClientModels.QuestionType.FiveStars:
                     result = Tailspin.Web.Shared.Models.QuestionType.FiveStars;
                     break;
-                case SurveyAnswerService.Client.Models.QuestionType.MultipleChoice:
+                case ClientModels.QuestionType.MultipleChoice:
                     result = Tailspin.Web.Shared.Models.QuestionType.MultipleChoice;
                     break;
-                case SurveyAnswerService.Client.Models.QuestionType.SimpleText:
+                case ClientModels.QuestionType.SimpleText:
                     result = Tailspin.Web.Shared.Models.QuestionType.SimpleText;
                     break;
                 default:
@@ -140,7 +141,7 @@
             return result;
         }
 
-        public static SurveyAnswersSummary ToSurveyAnswersSummary(this SurveyAnalysisService.Client.Models.SurveyAnswersSummary surveyAnswersSummary)
+        public static SurveyAnswersSummary ToSurveyAnswersSummary(this ClientModels.SurveyAnswersSummary surveyAnswersSummary)
         {
             if (surveyAnswersSummary == null)
             {
@@ -155,7 +156,7 @@
             };
         }
 
-        public static QuestionAnswersSummary ToQuestionAnswerSummary(this SurveyAnalysisService.Client.Models.QuestionAnswersSummary questionAnswersSummary)
+        public static QuestionAnswersSummary ToQuestionAnswerSummary(this ClientModels.QuestionAnswersSummary questionAnswersSummary)
         {
             if (questionAnswersSummary == null)
             {

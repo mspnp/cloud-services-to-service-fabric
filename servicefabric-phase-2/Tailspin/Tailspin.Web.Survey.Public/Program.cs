@@ -1,85 +1,33 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using Microsoft.ServiceFabric.Services.Communication.Runtime;
-using Microsoft.ServiceFabric.Services.Runtime;
-using System.Collections.Generic;
-using System.Fabric;
-using System.IO;
+﻿using System;
+using System.Diagnostics;
 using System.Net;
 using System.Threading;
-using System.Threading.Tasks;
+using Microsoft.ServiceFabric.Services.Runtime;
 
 namespace Tailspin.Web.Survey.Public
 {
-    public class Program
+    internal static class Program
     {
-        // Entry point for the application.
-        public static void Main(string[] args)
-        {
-            ServicePointManager.DefaultConnectionLimit = int.MaxValue;
-            ServicePointManager.UseNagleAlgorithm = false;
-            ServicePointManager.Expect100Continue = false;
-
-            ServiceRuntime.RegisterServiceAsync("Tailspin.Web.Survey.PublicType", context => new WebHostingService(context, "ServiceEndpoint")).GetAwaiter().GetResult();
-
-            Thread.Sleep(Timeout.Infinite);
-        }
-
         /// <summary>
-        /// A specialized stateless service for hosting ASP.NET Core web apps.
+        /// This is the entry point of the service host process.
         /// </summary>
-        internal sealed class WebHostingService : StatelessService, ICommunicationListener
+        private static void Main(string[] args)
         {
-            private readonly string _endpointName;
-
-            private IWebHost _webHost;
-
-            public WebHostingService(StatelessServiceContext serviceContext, string endpointName)
-                : base(serviceContext)
+            try
             {
-                _endpointName = endpointName;
+                ServiceRuntime.RegisterServiceAsync("Tailspin.Web.Survey.PublicType",
+                        context => new WebSurveyPublic(context)).GetAwaiter().GetResult();
+
+                ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(WebSurveyPublic).Name);
+
+                // Prevents this host process from terminating so services keeps running. 
+                Thread.Sleep(Timeout.Infinite);
             }
-
-            #region StatelessService
-
-            protected override IEnumerable<ServiceInstanceListener> CreateServiceInstanceListeners()
+            catch (Exception e)
             {
-                return new[] { new ServiceInstanceListener(_ => this) };
+                ServiceEventSource.Current.ServiceHostInitializationFailed(e.ToString());
+                throw;
             }
-
-            #endregion StatelessService
-
-            #region ICommunicationListener
-
-            void ICommunicationListener.Abort()
-            {
-                _webHost?.Dispose();
-            }
-
-            Task ICommunicationListener.CloseAsync(CancellationToken cancellationToken)
-            {
-                _webHost?.Dispose();
-
-                return Task.FromResult(true);
-            }
-
-            Task<string> ICommunicationListener.OpenAsync(CancellationToken cancellationToken)
-            {
-                var endpoint = FabricRuntime.GetActivationContext().GetEndpoint(_endpointName);
-
-                string serverUrl = $"{endpoint.Protocol}://{FabricRuntime.GetNodeContext().IPAddressOrFQDN}:{endpoint.Port}";
-
-                _webHost = new WebHostBuilder().UseKestrel()
-                                               .UseContentRoot(Directory.GetCurrentDirectory())
-                                               .UseStartup<Startup>()
-                                               .UseUrls(serverUrl)
-                                               .Build();
-
-                _webHost.Start();
-
-                return Task.FromResult(serverUrl);
-            }
-
-            #endregion ICommunicationListener
         }
     }
 }

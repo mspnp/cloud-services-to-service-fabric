@@ -12,7 +12,9 @@
     using Tailspin.Web.Survey.Public.Controllers;
     using Tailspin.Web.Survey.Public.Models;
     using Tailspin.Web.Shared.Models;
+    using ClientModels = Tailspin.Shared.Models.Client;
     using Utility;
+    using Tailspin.SurveyResponseService.Client;
 
     [TestClass]
     public class SurveysControllerFixture
@@ -22,9 +24,12 @@
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
-                .ReturnsAsync(new Tailspin.SurveyManagementService.Client.Models.Survey());
+                .ReturnsAsync(new ClientModels.Survey());
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 await controller.Display("slug");
             }
@@ -40,9 +45,12 @@
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
-                .ReturnsAsync(new Tailspin.SurveyManagementService.Client.Models.Survey());
+                .ReturnsAsync(new ClientModels.Survey());
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = await controller.Display(string.Empty) as ViewResult;
 
@@ -53,7 +61,7 @@
         [TestMethod]
         public async Task DisplayCopiesTheSurveyTitleToTheSurveyAnswerReturnedInTheContentModel()
         {
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var survey = new ClientModels.Survey()
             {
                 Title = "title to be copied"
             };
@@ -62,7 +70,10 @@
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
                 .ReturnsAsync(survey);
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = await controller.Display(string.Empty) as ViewResult;
 
@@ -74,11 +85,11 @@
         [TestMethod]
         public async Task DisplayCopiesTheSurveyQuestionTextToTheSurveyAnswerReturnedInTheContentModel()
         {
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var survey = new ClientModels.Survey()
             {
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>()
+                Questions = new List<ClientModels.Question>()
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question()
+                    new ClientModels.Question()
                     {
                         Text = "question text to copy"
                     }
@@ -89,7 +100,10 @@
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
                 .ReturnsAsync(survey);
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = await controller.Display(string.Empty) as ViewResult;
 
@@ -101,13 +115,13 @@
         [TestMethod]
         public async Task DisplayCopiesTheSurveyQuestionTypeToTheQuestionAnswerReturnedInTheContentModel()
         {
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var survey = new ClientModels.Survey()
             {
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>()
+                Questions = new List<ClientModels.Question>()
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question()
+                    new ClientModels.Question()
                     {
-                        Type = Tailspin.SurveyManagementService.Client.Models.QuestionType.SimpleText
+                        Type = ClientModels.QuestionType.SimpleText
                     },
                 }
             };
@@ -116,7 +130,10 @@
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
                 .ReturnsAsync(survey);
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = await controller.Display(string.Empty) as ViewResult;
 
@@ -128,12 +145,12 @@
         [TestMethod]
         public async Task DisplayTransformsAllTheSurveyQuestionsToQuestionAnswerRetrnedInTheContentModel()
         {
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var survey = new ClientModels.Survey()
             {
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>()
+                Questions = new List<ClientModels.Question>()
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question(),
-                    new Tailspin.SurveyManagementService.Client.Models.Question()
+                    new ClientModels.Question(),
+                    new ClientModels.Question()
                 }
             };
 
@@ -141,7 +158,10 @@
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
                 .ReturnsAsync(survey);
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = await controller.Display(string.Empty) as ViewResult;
 
@@ -153,13 +173,16 @@
         [TestMethod]
         public async Task DisplayReturnsSurveyTitleAsTitleInTheModel()
         {
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey { Title = "title" };
+            var survey = new ClientModels.Survey { Title = "title" };
 
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
                 .ReturnsAsync(survey);
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = await controller.Display(string.Empty) as ViewResult;
 
@@ -173,9 +196,12 @@
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
-                .ReturnsAsync(new Tailspin.SurveyManagementService.Client.Models.Survey());
+                .ReturnsAsync(new ClientModels.Survey());
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = await controller.Display(string.Empty, new SurveyAnswer()) as RedirectToActionResult;
                 Assert.AreEqual("ThankYou", result.ActionName);
@@ -188,9 +214,12 @@
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
-                .ReturnsAsync(new Tailspin.SurveyManagementService.Client.Models.Survey());
+                .ReturnsAsync(new ClientModels.Survey());
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 await controller.Display("slug", new SurveyAnswer());
             }
@@ -204,7 +233,7 @@
         [TestMethod]
         public async Task DisplayWhenPostCallsSaveSurveyAnswerFromSurveyAnswerStoreWithTheSlugParameterWhenModelIsValid()
         {
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var survey = new ClientModels.Survey()
             {
                 SlugName = "slug"
             };
@@ -213,14 +242,18 @@
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
                 .ReturnsAsync(survey);
             var mockSurveyAnswerService = new Mock<ISurveyAnswerService>();
+            var mockSurveyResponseService = new Mock<ISurveyResponseService>();
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, mockSurveyAnswerService.Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                mockSurveyAnswerService.Object,
+                mockSurveyResponseService.Object))
             {
                 await controller.Display("slug", new SurveyAnswer());
             }
 
-            mockSurveyAnswerService.Verify(r => r.SaveSurveyAnswerAsync(
-                It.Is<Tailspin.SurveyAnswerService.Client.Models.SurveyAnswer>(
+            mockSurveyResponseService.Verify(r => r.SaveSurveyResponseAsync(
+                It.Is<ClientModels.SurveyAnswer>(
                     sa => "slug" == sa.SlugName)),
                 Times.Once);
         }
@@ -228,11 +261,11 @@
         [TestMethod]
         public async Task DisplayWhenPostCallsSaveSurveyAnswerFromSurveyAnswerStoreWithQuestionTextReadFromTheSurveyWhenModelIsValid()
         {
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey
+            var survey = new ClientModels.Survey
             {
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>()
+                Questions = new List<ClientModels.Question>()
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question { Text = "question text" },
+                    new ClientModels.Question { Text = "question text" },
                 }
             };
 
@@ -240,6 +273,7 @@
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
                 .ReturnsAsync(survey);
             var mockSurveyAnswerService = new Mock<ISurveyAnswerService>();
+            var mockSurveyResponseService = new Mock<ISurveyResponseService>();
             var surveyAnswer = new SurveyAnswer
             {
                 QuestionAnswers = new List<QuestionAnswer>()
@@ -248,13 +282,16 @@
                 }
             };
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, mockSurveyAnswerService.Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                mockSurveyAnswerService.Object,
+                mockSurveyResponseService.Object))
             {
                 await controller.Display(string.Empty, surveyAnswer);
             }
 
-            mockSurveyAnswerService.Verify(r => r.SaveSurveyAnswerAsync(
-                It.Is<Tailspin.SurveyAnswerService.Client.Models.SurveyAnswer>(
+            mockSurveyResponseService.Verify(r => r.SaveSurveyResponseAsync(
+                It.Is<ClientModels.SurveyAnswer>(
                     sa => "question text" == sa.QuestionAnswers[0].QuestionText)),
                 Times.Once);
         }
@@ -262,13 +299,13 @@
         [TestMethod]
         public async Task DisplayWhenPostCallsSaveSurveyAnswerFromSurveyAnswerStoreWithQuestionTypeReadFromTheSurveyWhenModelIsValid()
         {
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey
+            var survey = new ClientModels.Survey
             {
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>
+                Questions = new List<ClientModels.Question>
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question
+                    new ClientModels.Question
                     {
-                        Type = Tailspin.SurveyManagementService.Client.Models.QuestionType.SimpleText
+                        Type = ClientModels.QuestionType.SimpleText
                     },
                 }
             };
@@ -277,6 +314,7 @@
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
                 .ReturnsAsync(survey);
             var mockSurveyAnswerService = new Mock<ISurveyAnswerService>();
+            var mockSurveyResponseService = new Mock<ISurveyResponseService>();
             var surveyAnswer = new SurveyAnswer()
             {
                 QuestionAnswers = new List<QuestionAnswer>()
@@ -285,25 +323,28 @@
                 }
             };
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, mockSurveyAnswerService.Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                mockSurveyAnswerService.Object,
+                mockSurveyResponseService.Object))
             {
                 await controller.Display(string.Empty, surveyAnswer);
             }
 
-            mockSurveyAnswerService.Verify(r => r.SaveSurveyAnswerAsync(
-                It.Is<Tailspin.SurveyAnswerService.Client.Models.SurveyAnswer>(
-                    sa => Tailspin.SurveyAnswerService.Client.Models.QuestionType.SimpleText == sa.QuestionAnswers[0].QuestionType)),
+            mockSurveyResponseService.Verify(r => r.SaveSurveyResponseAsync(
+                It.Is<ClientModels.SurveyAnswer>(
+                    sa => ClientModels.QuestionType.SimpleText == sa.QuestionAnswers[0].QuestionType)),
                 Times.Once);
         }
 
         [TestMethod]
         public async Task DisplayWhenPostCallsSaveSurveyAnswerFromSurveyAnswerStoreWithAnswerReadFromTheParameterWhenModelIsValid()
         {
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var survey = new ClientModels.Survey()
             {
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>()
+                Questions = new List<ClientModels.Question>()
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question()
+                    new ClientModels.Question()
                 }
             };
 
@@ -311,6 +352,7 @@
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
                 .ReturnsAsync(survey);
             var mockSurveyAnswerService = new Mock<ISurveyAnswerService>();
+            var mockSurveyResponseService = new Mock<ISurveyResponseService>();
             var surveyAnswer = new SurveyAnswer()
             {
                 QuestionAnswers = new List<QuestionAnswer>()
@@ -322,24 +364,27 @@
                 }
             };
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, mockSurveyAnswerService.Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                mockSurveyAnswerService.Object,
+                mockSurveyResponseService.Object))
             {
                 await controller.Display(string.Empty, surveyAnswer);
             }
 
-            mockSurveyAnswerService.Verify(r => r.SaveSurveyAnswerAsync(
-                It.Is<Tailspin.SurveyAnswerService.Client.Models.SurveyAnswer>(sa => "answer" == sa.QuestionAnswers[0].Answer)),
+            mockSurveyResponseService.Verify(r => r.SaveSurveyResponseAsync(
+                It.Is<ClientModels.SurveyAnswer>(sa => "answer" == sa.QuestionAnswers[0].Answer)),
                 Times.Once);
         }
 
         [TestMethod]
         public async Task DisplayWhenPostThrowsIfSaveSurveyAnswersReadFromSurveyStoreHaveDifferentCountToTheSurveyAnswerParameter()
         {
-            var surveyWith1Question = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var surveyWith1Question = new ClientModels.Survey()
             {
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>()
+                Questions = new List<ClientModels.Question>()
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question()
+                    new ClientModels.Question()
                 }
             };
 
@@ -348,7 +393,10 @@
                 .ReturnsAsync(surveyWith1Question);
             var surveyAnswerWithoutQuestions = new SurveyAnswer();
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 await AssertEx.ThrowsExceptionAsync<ArgumentException>(
                     async () => await controller.Display(string.Empty, surveyAnswerWithoutQuestions),
@@ -360,11 +408,11 @@
         public async Task DisplayWhenPostReturnsModelWithTheAnswersReadFromTheParameterWhenModelIsNotValid()
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var survey = new ClientModels.Survey()
             {
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>()
+                Questions = new List<ClientModels.Question>()
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question()
+                    new ClientModels.Question()
                 }
             };
 
@@ -381,7 +429,10 @@
                 }
             };
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 controller.ModelState.AddModelError("error for test", "invalid model state");
 
@@ -396,11 +447,11 @@
         public async Task DisplayWhenPostReturnsEmptyViewNameWhenModelIsNotValid()
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var survey = new ClientModels.Survey()
             {
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>()
+                Questions = new List<ClientModels.Question>()
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question()
+                    new ClientModels.Question()
                 }
             };
             mockSurveyManagementService.Setup(r => r.GetSurveyAsync(It.IsAny<string>()))
@@ -413,7 +464,10 @@
                 }
             };
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 controller.ModelState.AddModelError("error for test", "invalid model state");
 
@@ -427,12 +481,12 @@
         public async Task DisplayWhenPostReturnsSurveyTitleAsTitleInTheModelWhenModelIsNotValid()
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
-            var survey = new Tailspin.SurveyManagementService.Client.Models.Survey()
+            var survey = new ClientModels.Survey()
             {
                 Title = "title",
-                Questions = new List<Tailspin.SurveyManagementService.Client.Models.Question>()
+                Questions = new List<ClientModels.Question>()
                 {
-                    new Tailspin.SurveyManagementService.Client.Models.Question()
+                    new ClientModels.Question()
                 }
             };
 
@@ -447,7 +501,10 @@
                 }
             };
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 controller.ModelState.AddModelError("error for test", "invalid model state");
 
@@ -462,10 +519,13 @@
         public async Task IndexReturnsTitleInTheModel()
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
-            var surveys = new List<Tailspin.SurveyManagementService.Client.Models.SurveyInformation>();
+            var surveys = new List<ClientModels.SurveyInformation>();
             mockSurveyManagementService.Setup(r => r.GetLatestSurveysAsync()).ReturnsAsync(surveys);
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = await controller.Index() as ViewResult;
 
@@ -478,10 +538,13 @@
         public async Task IndexGetsRecentSurveysFromStore()
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
-            var surveys = new List<Tailspin.SurveyManagementService.Client.Models.SurveyInformation>();
+            var surveys = new List<ClientModels.SurveyInformation>();
             mockSurveyManagementService.Setup(r => r.GetLatestSurveysAsync()).ReturnsAsync(surveys);
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 await controller.Index();
             }
@@ -493,10 +556,13 @@
         public async Task IndexReturnsRecentSurveysFromStoreInTheModel()
         {
             var mockSurveyManagementService = new Mock<ISurveyManagementService>();
-            var surveys = new List<Tailspin.SurveyManagementService.Client.Models.SurveyInformation>();
+            var surveys = new List<ClientModels.SurveyInformation>();
             mockSurveyManagementService.Setup(r => r.GetLatestSurveysAsync()).ReturnsAsync(surveys);
 
-            using (var controller = new SurveysController(mockSurveyManagementService.Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                mockSurveyManagementService.Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = await controller.Index() as ViewResult;
 
@@ -508,7 +574,10 @@
         [TestMethod]
         public void ThankYouReturnsModel()
         {
-            using (var controller = new SurveysController(new Mock<ISurveyManagementService>().Object, new Mock<ISurveyAnswerService>().Object))
+            using (var controller = new SurveysController(
+                new Mock<ISurveyManagementService>().Object,
+                new Mock<ISurveyAnswerService>().Object,
+                new Mock<ISurveyResponseService>().Object))
             {
                 var result = controller.ThankYou() as ViewResult;
 

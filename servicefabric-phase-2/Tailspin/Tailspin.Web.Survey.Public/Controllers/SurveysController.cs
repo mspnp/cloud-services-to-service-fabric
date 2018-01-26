@@ -5,30 +5,26 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-    using SurveyAnswerService.Client;
-    using SurveyManagementService.Client;
+    using Tailspin.SurveyAnswerService.Client;
+    using Tailspin.SurveyManagementService.Client;
     using Tailspin.Web.Survey.Public.Models;
     using Tailspin.Web.Shared.Models;
+    using Tailspin.SurveyResponseService.Client;
 
     public class SurveysController : Controller
     {
         private readonly ISurveyManagementService surveyManagementService;
         private readonly ISurveyAnswerService surveyAnswerService;
+        private readonly ISurveyResponseService surveyResponseService;
 
-        public SurveysController(ISurveyManagementService surveyManagementService, ISurveyAnswerService surveyAnswerService)
+        public SurveysController(
+            ISurveyManagementService surveyManagementService,
+            ISurveyAnswerService surveyAnswerService,
+            ISurveyResponseService surveyResponseService)
         {
-            if (surveyManagementService == null)
-            {
-                throw new ArgumentNullException(nameof(surveyManagementService));
-            }
-
-            if (surveyAnswerService == null)
-            {
-                throw new ArgumentNullException(nameof(surveyAnswerService));
-            }
-
-            this.surveyManagementService = surveyManagementService;
-            this.surveyAnswerService = surveyAnswerService;
+            this.surveyManagementService = surveyManagementService ?? throw new ArgumentNullException(nameof(surveyManagementService));
+            this.surveyAnswerService = surveyAnswerService ?? throw new ArgumentNullException(nameof(surveyAnswerService));
+            this.surveyResponseService = surveyResponseService ?? throw new ArgumentNullException(nameof(surveyResponseService));
         }
 
         public async Task<ActionResult> Index()
@@ -71,7 +67,7 @@
                 return this.View(model);
             }
 
-            await this.surveyAnswerService.SaveSurveyAnswerAsync(surveyAnswer.ToSurveyAnswer());
+            await this.surveyResponseService.SaveSurveyResponseAsync(surveyAnswer.ToSurveyAnswer());
 
             return this.RedirectToAction("ThankYou");
         }

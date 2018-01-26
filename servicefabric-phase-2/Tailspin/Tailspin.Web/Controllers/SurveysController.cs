@@ -24,24 +24,9 @@
 
         public SurveysController(ISurveyManagementService surveyManagementService, ISurveyAnswerService surveyAnswerService, ISurveyAnalysisService surveyAnalysisService)
         {
-            if (surveyManagementService == null)
-            {
-                throw new ArgumentNullException(nameof(surveyManagementService));
-            }
-
-            if (surveyAnswerService == null)
-            {
-                throw new ArgumentNullException(nameof(surveyAnswerService));
-            }
-
-            if (surveyAnalysisService == null)
-            {
-                throw new ArgumentNullException(nameof(surveyAnalysisService));
-            }
-
-            this.surveyManagementService = surveyManagementService;
-            this.surveyAnswerService = surveyAnswerService;
-            this.surveyAnalysisService = surveyAnalysisService;
+            this.surveyManagementService = surveyManagementService ?? throw new ArgumentNullException(nameof(surveyManagementService));
+            this.surveyAnswerService = surveyAnswerService ?? throw new ArgumentNullException(nameof(surveyAnswerService));
+            this.surveyAnalysisService = surveyAnalysisService ?? throw new ArgumentNullException(nameof(surveyAnalysisService));
         }
 
         [HttpGet]
@@ -163,7 +148,7 @@
         public async Task<ActionResult> Analyze(string surveySlug)
         {
             var surveyAnswersSummary = await this.surveyAnalysisService.GetSurveyAnswersSummaryAsync(surveySlug);
-            if (surveyAnswersSummary == null) surveyAnswersSummary = new SurveyAnalysisService.Client.Models.SurveyAnswersSummary();
+            if (surveyAnswersSummary == null) surveyAnswersSummary = new Tailspin.Shared.Models.Client.SurveyAnswersSummary();
             var model = this.CreatePageViewData(surveyAnswersSummary.ToSurveyAnswersSummary());
             model.Title = surveySlug;
             return this.View(model);

@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.4.0\build\Microsoft.VisualStudio.Azure.Fabric.Application.props" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.4.0\build\Microsoft.VisualStudio.Azure.Fabric.Application.props')" />
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" InitialTargets=";ValidateMSBuildFiles">
+  <Import Project="..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.3\build\Microsoft.VisualStudio.Azure.Fabric.Application.props" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.3\build\Microsoft.VisualStudio.Azure.Fabric.Application.props')" />
   <PropertyGroup Label="Globals">
     <ProjectGuid>e4b4287b-f19d-4c12-9c24-71699c395eb0</ProjectGuid>
-    <ProjectVersion>1.4</ProjectVersion>
+    <ProjectVersion>1.6</ProjectVersion>
+    <MinToolsVersion>1.5</MinToolsVersion>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|AnyCPU">
@@ -34,8 +35,12 @@
     <None Include="Scripts\Deploy-FabricApplication.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tailspin.Web.Survey.Public\Tailspin.Web.Survey.Public.xproj" />
-    <ProjectReference Include="..\Tailspin.Web\Tailspin.Web.xproj" />
+    <ProjectReference Include="..\Tailspin.SurveyAnalysisService\Tailspin.SurveyAnalysisService.csproj" />
+    <ProjectReference Include="..\Tailspin.SurveyAnswerService\Tailspin.SurveyAnswerService.csproj" />
+    <ProjectReference Include="..\Tailspin.SurveyManagementService\Tailspin.SurveyManagementService.csproj" />
+    <ProjectReference Include="..\Tailspin.SurveyResponseService\Tailspin.SurveyResponseService.csproj" />
+    <ProjectReference Include="..\Tailspin.Web.Survey.Public\Tailspin.Web.Survey.Public.csproj" />
+    <ProjectReference Include="..\Tailspin.Web\Tailspin.Web.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -45,5 +50,9 @@
     <ApplicationProjectTargetsPath>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Service Fabric Tools\Microsoft.VisualStudio.Azure.Fabric.ApplicationProject.targets</ApplicationProjectTargetsPath>
   </PropertyGroup>
   <Import Project="$(ApplicationProjectTargetsPath)" Condition="Exists('$(ApplicationProjectTargetsPath)')" />
-  <Import Project="..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.4.0\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.4.0\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets')" />
+  <Import Project="..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.3\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.3\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets')" />
+  <Target Name="ValidateMSBuildFiles">
+    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.3\build\Microsoft.VisualStudio.Azure.Fabric.Application.props')" Text="Unable to find the '..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.3\build\Microsoft.VisualStudio.Azure.Fabric.Application.props' file. Please restore the 'Microsoft.VisualStudio.Azure.Fabric.MSBuild' Nuget package" />
+    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.3\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets')" Text="Unable to find the '..\packages\Microsoft.VisualStudio.Azure.Fabric.MSBuild.1.6.3\build\Microsoft.VisualStudio.Azure.Fabric.Application.targets' file. Please restore the 'Microsoft.VisualStudio.Azure.Fabric.MSBuild' Nuget package" />
+  </Target>
 </Project>

@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Application xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="fabric:/Tailspin" xmlns="http://schemas.microsoft.com/2011/01/fabric">
   <Parameters>
+    <Parameter Name="Tailspin.SurveyResponseService_PartitionCount" Value="1" />
+    <Parameter Name="Tailspin.SurveyResponseService_MinReplicaSetSize" Value="1" />
+    <Parameter Name="Tailspin.SurveyResponseService_TargetReplicaSetSize" Value="1" />
+    <Parameter Name="Tailspin.SurveyResponseService_DataConnectionString" Value="UseDevelopmentStorage=true" />
+    <Parameter Name="SurveyManagementService_InstanceCount" Value="1" />
+    <Parameter Name="SurveyManagementService_DataConnectionString" Value="UseDevelopmentStorage=true" />
+    <Parameter Name="SurveyManagementService_CosmosConnectionString" Value="UseDevelopmentStorage=true" />
+    <Parameter Name="SurveyAnswerService_InstanceCount" Value="1" />
+    <Parameter Name="SurveyAnswerService_DataConnectionString" Value="UseDevelopmentStorage=true" />
+    <Parameter Name="SurveyAnalysisService_InstanceCount" Value="1" />
+    <Parameter Name="SurveyAnalysisService_RedisCacheConnectionString" Value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
     <Parameter Name="Public_InstanceCount" Value="-1" />
     <Parameter Name="Web_InstanceCount" Value="-1" />
     <Parameter Name="Web_RedisCacheConnectionString" Value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
