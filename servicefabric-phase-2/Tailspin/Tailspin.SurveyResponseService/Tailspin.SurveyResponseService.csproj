@@ -21,7 +21,7 @@
     <PackageReference Include="Microsoft.ServiceFabric.AspNetCore.Kestrel" Version="2.8.219" />
     <PackageReference Include="Microsoft.ServiceFabric.Data" Version="2.8.219" />
     <PackageReference Include="Microsoft.ServiceFabric.Services" Version="2.8.219" />
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.5.0" />
   </ItemGroup>
 
