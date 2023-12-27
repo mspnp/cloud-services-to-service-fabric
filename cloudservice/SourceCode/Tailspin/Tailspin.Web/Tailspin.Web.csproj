@@ -258,7 +258,7 @@
     <Compile Include="Security\AuthenticateAndAuthorizeAttribute.cs" />
     <Compile Include="Security\AuthenticateAndAuthorizeTenantAttribute.cs" />
     <Compile Include="Security\AuthenticationPropertiesExtensions.cs" />
-    <Compile Include="Security\AzureADClaimTypes.cs" />
+    <Compile Include="Security\MicrosoftEntraClaimTypes.cs" />
     <Compile Include="Security\ClaimsIdentityExtensions.cs" />
     <Compile Include="Security\OpenIdConnectClaimTypes.cs" />
     <Compile Include="Security\TailspinRoles.cs" />

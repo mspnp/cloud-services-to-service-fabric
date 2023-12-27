@@ -11,9 +11,9 @@
     <Parameter Name="Web_RedisCacheConnectionString" Value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
     <Parameter Name="Web_TraceEventTypeFilter" Value="Information" />
     <Parameter Name="Web_PublicSurveyWebsiteUrl" Value="http://127.0.0.1:81" />
-    <Parameter Name="Web_AzureADClientId" Value="Your_AAD_ClientId" />
-    <Parameter Name="Web_AzureADTenant" Value="Your_AAD_Tenant" />
-    <Parameter Name="Web_AzureADTenantId" Value="Your_AAD_TenantId" />
+    <Parameter Name="Web_MicrosoftEntraClientId" Value="Your_EntraID_ClientId" />
+    <Parameter Name="Web_MicrosoftEntraTenant" Value="Your_EntraID_Tenant" />
+    <Parameter Name="Web_MicrosoftEntraTenantId" Value="Your_EntraID_TenantId" />
     <Parameter Name="Web_ExtensionsPath" Value="Your_Extensions_Path" />
     <Parameter Name="WebSurveyPublic_DataConnectionString" Value="UseDevelopmentStorage=true" />
     <Parameter Name="WebSurveyPublic_DiagnosticsConnectionString" Value="UseDevelopmentStorage=true" />

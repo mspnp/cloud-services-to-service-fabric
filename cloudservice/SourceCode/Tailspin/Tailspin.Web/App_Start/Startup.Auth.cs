@@ -24,12 +24,12 @@ namespace Tailspin.Web
 {
     public partial class Startup
     {
-        private static string clientId = CloudConfigurationManager.GetSetting("AzureADClientId");
-        private static string aadInstance = "https://login.microsoftonline.com/{0}";
+        private static string clientId = CloudConfigurationManager.GetSetting("MicrosoftEntraClientId");
+        private static string entraIdInstance = "https://login.microsoftonline.com/{0}";
         private static string postLogoutRedirectUri = "https://localhost";
-        private static string tenantId = CloudConfigurationManager.GetSetting("AzureADTenantId");
+        private static string tenantId = CloudConfigurationManager.GetSetting("MicrosoftEntraTenantId");
 
-        string authority = String.Format(CultureInfo.InvariantCulture, aadInstance, "common");
+        string authority = String.Format(CultureInfo.InvariantCulture, entraIdInstance, "common");
 
         public void ConfigureAuth(IAppBuilder app)
         {
