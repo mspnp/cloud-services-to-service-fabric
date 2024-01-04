@@ -15,9 +15,9 @@
       <Setting name="ExtensionsPath" />
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
       <Setting name="RedisCacheConnectionString" />
-      <Setting name="AzureADClientId" />
-      <Setting name="AzureADTenant" />
-      <Setting name="AzureADTenantId" />
+      <Setting name="MicrosoftEntraClientId" />
+      <Setting name="MicrosoftEntraTenant" />
+      <Setting name="MicrosoftEntraTenantId" />
     </ConfigurationSettings>
     <Certificates>
       <Certificate name="PoltergeistSecretStore" storeLocation="LocalMachine" storeName="My" />

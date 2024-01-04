@@ -26,7 +26,7 @@ namespace Tailspin.Web.Security
 
         public static string GetTenantIdValue(this ClaimsIdentity principal)
         {
-            return principal.FindFirstValue(AzureADClaimTypes.TenantId, true);
+            return principal.FindFirstValue(MicrosoftEntraClaimTypes.TenantId, true);
         }
 
     }

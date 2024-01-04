@@ -9,9 +9,9 @@
     <Parameter Name="PublicSurveyWebsiteUrl" Value="" />
   </Section>
   <Section Name="Authentication">
-    <Parameter Name="AzureADClientId" Value="" />
-    <Parameter Name="AzureADTenant" Value="" />
-    <Parameter Name="AzureADTenantId" Value="" />
+    <Parameter Name="MicrosoftEntraClientId" Value="" />
+    <Parameter Name="MicrosoftEntraTenant" Value="" />
+    <Parameter Name="MicrosoftEntraTenantId" Value="" />
   </Section>
   <Section Name="Misc">
     <Parameter Name="TraceEventTypeFilter" Value="" />

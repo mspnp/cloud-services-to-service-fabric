@@ -9,9 +9,9 @@
       <Setting name="TraceEventTypeFilter" value="Information" />
       <Setting name="ExtensionsPath" value=".\Bin" />
       <Setting name="RedisCacheConnectionString" value="YourRedisAccount.redis.cache.windows.net:6380,password=YourPrimaryAccessKey,ssl=True,abortConnect=False" />
-      <Setting name="AzureADClientId" value="" />
-      <Setting name="AzureADTenant" value="" />
-      <Setting name="AzureADTenantId" value="" />
+      <Setting name="MicrosoftEntraClientId" value="" />
+      <Setting name="MicrosoftEntraTenant" value="" />
+      <Setting name="MicrosoftEntraTenantId" value="" />
     </ConfigurationSettings>
     <Certificates>
       <Certificate name="PoltergeistSecretStore" thumbprint="f54701bd5d320c2316031b8a914139652176fe5c" thumbprintAlgorithm="sha1" />
